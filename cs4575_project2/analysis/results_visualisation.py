@@ -1,4 +1,4 @@
-from cs4575_project1.analysis.results_extraction import Result
+from cs4575_project2.analysis.results_extraction import Result
 from pathlib import Path
 
 frameworks = ['keras', 'torch', 'jax_jit']

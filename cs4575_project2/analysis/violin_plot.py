@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from cs4575_project1.analysis.results_extraction import Result
+from cs4575_project2.analysis.results_extraction import Result
 from pathlib import Path
 
 dir = 'results_mao'

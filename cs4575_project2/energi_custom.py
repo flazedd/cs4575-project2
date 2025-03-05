@@ -6,11 +6,12 @@ import re
 from utils import print_color
 
 class EnergiCustom:
-    def __init__(self, output="results.csv"):
+    def __init__(self, output="results.csv", measure_gpu=False):
         self.joules = None
         self.seconds = None
         self.process = None
         self.output = output
+        self.measure_gpu = measure_gpu
 
 
     def start(self):
@@ -34,6 +35,12 @@ class EnergiCustom:
             '--summary',
             'timeout', '99999'  # Maximum for Windows, ~1 day
         ]
+
+        # Check if measure_gpu is True, and if so, add '--gpu' to the command
+        if self.measure_gpu:
+            command.insert(4, '--gpu')
+
+        print_color(f'Executing command: {" ".join(command)}')
         # Start the command as a subprocess
         try:
             self.process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)

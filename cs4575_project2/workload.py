@@ -9,7 +9,7 @@ def build_and_run_docker():
     try:
         # Step 1: Build the Docker image from the Dockerfile in the current directory
         print("Building Docker image...")
-        image, logs = client.images.build(path=".", dockerfile="Dockerfile", tag="pytorch-ml")
+        image, logs = client.images.build(path="..", dockerfile="Dockerfile", tag="pytorch-ml")
 
 
         # Output the logs from the build process

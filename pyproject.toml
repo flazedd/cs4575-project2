@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "cs4575-project2"
+version = "0.1.0"
+description = ""
+authors = ["Reinier <reinier7175@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.8"
+seaborn = "^0.13.2"
+numpy = "^2.2.3"
+matplotlib = "^3.10.1"
+pandas = "^2.2.3"
+colorama = "^0.4.6"
+torch = "^2.6.0"
+docker = "^7.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
