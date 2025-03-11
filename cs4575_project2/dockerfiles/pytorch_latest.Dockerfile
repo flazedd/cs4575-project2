@@ -1,5 +1,4 @@
 FROM pytorch/pytorch:latest
-
 # Set the working directory inside the container
 WORKDIR /app
 
