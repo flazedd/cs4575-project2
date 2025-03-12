@@ -2,6 +2,7 @@ from vllm import LLM, SamplingParams
 
 llm = LLM(
     model="Qwen/Qwen2.5-1.5B-Instruct-AWQ",
+    device="cuda",                         # use GPU
     quantization="awq_marlin",
     generation_config="auto"
 )
@@ -14,7 +15,7 @@ Which of these is the most suitable course of action to study the cause of gene 
 
 sampling_params = llm.get_default_sampling_params()
 sampling_params.temperature = 0.5
-sampling_params.max_tokens = 2048
+sampling_params.max_tokens = 512
 
 outputs = llm.generate(
     prompt=prompt,
