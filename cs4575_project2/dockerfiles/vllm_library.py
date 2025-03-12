@@ -15,12 +15,13 @@ Which of these is the most suitable course of action to study the cause of gene 
 
 sampling_params = llm.get_default_sampling_params()
 sampling_params.temperature = 0.5
-sampling_params.max_tokens = 512
+sampling_params.max_tokens = 1024
 
 outputs = llm.generate(
-    prompt=prompt,
+    prompt=[prompt],
     sampling_params=sampling_params,
 )
+
 
 response_text = outputs[0].outputs[0].text
 print(response_text)
