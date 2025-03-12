@@ -1,4 +1,4 @@
-from vllm import LLM, SamplingParams
+from vllm import LLM
 
 llm = LLM(
     model="Qwen/Qwen2.5-1.5B-Instruct-AWQ",
@@ -17,10 +17,7 @@ sampling_params = llm.get_default_sampling_params()
 sampling_params.temperature = 0.5
 sampling_params.max_tokens = 1024
 
-outputs = llm.generate(
-    prompt=[prompt],
-    sampling_params=sampling_params,
-)
+outputs = llm.generate(prompt, sampling_params)
 
 
 response_text = outputs[0].outputs[0].text
