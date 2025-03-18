@@ -95,3 +95,10 @@ poetry run python .\main.py
 ```
 
 
+first install torch: 
+
+poetry run pip install https://download.pytorch.org/whl/cu121/torch-2.3.1%2Bcu121-cp311-cp311-win_amd64.whl#sha256=5a578516d0caf233993b3161d7dce1472bb917c59dd767c51921cd6696c3f3f7
+
+then torch vision:
+
+poetry run pip install https://download.pytorch.org/whl/cu121/torchvision-0.18.1%2Bcu121-cp311-cp311-win_amd64.whl#sha256=d85e21c03ab40b3676caaca4ec951a1f3a74ddcac3e68521c81f1869eb53ebf9

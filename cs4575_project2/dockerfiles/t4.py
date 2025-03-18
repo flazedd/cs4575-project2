@@ -1,6 +1,15 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
 
+
+if torch.cuda.is_available():
+    # Get the name of the GPU
+    gpu_name = torch.cuda.get_device_name(0)
+    print(f"CUDA is available. GPU: {gpu_name}")
+else:
+    print("CUDA is not available. Using CPU.")
+
+
 # Local model directory (where files are stored)
 model_dir = "./models/mistral"
 
