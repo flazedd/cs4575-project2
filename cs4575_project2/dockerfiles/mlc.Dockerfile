@@ -15,8 +15,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Add CUDA 12.3 to PATH and LD_LIBRARY_PATH
-ENV PATH=/usr/local/cuda-12.3/bin:${PATH}
-ENV LD_LIBRARY_PATH=/usr/local/cuda-12.3/lib64:${LD_LIBRARY_PATH}
+ENV PATH=/usr/local/cuda-12.3/bin:$PATH
+ENV LD_LIBRARY_PATH=/usr/local/cuda-12.3/lib64
 
 # Set the working directory inside the container
 WORKDIR /app
