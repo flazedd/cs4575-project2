@@ -3,14 +3,12 @@ from vllm import LLM
 llm = LLM(
     model="Qwen/Qwen2.5-1.5B-Instruct-AWQ",
     device="cuda",                         # use NVIDIA GPU
-    quantization="awq_marlin",  # Uses AWQ marlin 4-bit quantitization
+    quantization="awq",  # Uses AWQ marlin 4-bit quantitization
     max_model_len = 16384, # Decrease context window (activation memory) by 50% (from 32768 default)
 )
 
 prompt = """
-You are interested in studying a rare type of breast cancer in a mouse model. 
-Your research up until now has shown that the cancer cells show low expression of a key tumor suppressor gene. 
-Which of these is the most suitable course of action to study the cause of gene silencing?
+What is 1 + 1? 
 """
 
 sampling_params = llm.get_default_sampling_params()
