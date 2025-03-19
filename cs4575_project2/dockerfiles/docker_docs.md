@@ -2,14 +2,13 @@
 
 ## Structure of Docker files
 
-Each inference library has a Dockerfile, a requirements.txt file, and a Python file with the code that belongs to that inference library.
+Each inference library has a Dockerfile and a Python file with the code that belongs to that inference library.
 
 **Example in this folder**  
 - **Dockerfile**: `<inference_library>.Dockerfile`  
-- **Requirements**: `requirements_<inference_library>.txt`  
 - **Python Library**: `<inference_library>_library.py`  
 
-This setup includes all the necessary instructions to install dependencies (from `requirements_<inference_library>.txt`) and run the Python code (`<inference_library>_library.py`) inside the Docker container defined by `<inference_library>.Dockerfile`.
+This setup includes all the necessary instructions to build and run the Python code (`<inference_library>_library.py`) inside the Docker container defined by `<inference_library>.Dockerfile`.
 
 ---
 
@@ -31,8 +30,25 @@ It executes each image, allowing you to launch the containers (with options such
 
 On Windows, you can right-click the PowerShell icon and select **Run as administrator**.
 
-### 2. Adjust Execution Policy (if necessary)
+### 2. Navigate to the script directory
 
+```powershell
+cd path\to\scripts\dockerfiles
+```
+
+### 3. Run the Script
+
+To build Docker images:
+```powershell
+.\build_images.ps1
+```
+
+To run Docker images:
+```powershell
+.\run_images.ps1
+```
+
+#### Adjust Execution Policy (if necessary)
 If you encounter an error about the script not being digitally signed, you can either unblock the file or change the execution policy:
 
 - **Unblock the file:**
@@ -44,21 +60,3 @@ If you encounter an error about the script not being digitally signed, you can e
   Set-ExecutionPolicy Bypass -Scope CurrentUser
   ```
   *Note: Changing the execution policy may have security implications. Only use this if you trust the source of the script.*
-
-### 3. Navigate to the script directory
-
-```powershell
-cd path\to\scripts\dockerfiles
-```
-
-### 4. Run the Script
-
-To build Docker images:
-```powershell
-.\build_images.ps1
-```
-
-To run Docker images:
-```powershell
-.\run_images.ps1
-```
