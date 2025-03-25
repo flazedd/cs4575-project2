@@ -1,1 +1,1 @@
-docker run --gpus all -v %~dp0log:/app/log:rw -it tensorrt
+docker run --gpus all -v %~dp0:/app:rw -it tensorrt

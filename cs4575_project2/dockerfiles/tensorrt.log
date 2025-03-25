@@ -1,0 +1,173 @@
+03/25/2025 22:33:04 Attempting to acquire lock 140709056645344 on /tmp/92ab9d01091f109faa57337bde90fa23acf3c7582a206d542389daa50cf10474.lock
+03/25/2025 22:33:04 Lock 140709056645344 acquired on /tmp/92ab9d01091f109faa57337bde90fa23acf3c7582a206d542389daa50cf10474.lock
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 https://huggingface.co:443 "GET /api/models/TinyLlama/TinyLlama-1.1B-Chat-v1.0/revision/main HTTP/1.1" 200 5899
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/config.json HTTP/1.1" 200 0
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/special_tokens_map.json HTTP/1.1" 200 0
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer.json HTTP/1.1" 200 0
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/generation_config.json HTTP/1.1" 200 0
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/model.safetensors HTTP/1.1" 302 0
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/eval_results.json HTTP/1.1" 200 0
+03/25/2025 22:33:04 Attempting to acquire lock 140709056647984 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/4ea05f1bc289d48ba9b92eea2f58ad8acd3dce5d.lock
+03/25/2025 22:33:04 Attempting to acquire lock 140709056651248 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/492d4b2966a1763442d426d880dbc29f94906e4c.lock
+03/25/2025 22:33:04 Attempting to acquire lock 140709056646448 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6e931b92caff4c79c5c56282f1e89569a0ae558.lock
+03/25/2025 22:33:04 Attempting to acquire lock 140709056654272 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/768e95e5b4dada726d7631277a4a87ecbb236f70.lock
+03/25/2025 22:33:04 Attempting to acquire lock 140709056658880 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933.lock
+03/25/2025 22:33:04 Attempting to acquire lock 140709056654368 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/f1ffbab317a5c0582b8ee6756a3cdfeb0cf684bc.lock
+03/25/2025 22:33:04 Lock 140709056647984 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/4ea05f1bc289d48ba9b92eea2f58ad8acd3dce5d.lock
+03/25/2025 22:33:04 Lock 140709056651248 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/492d4b2966a1763442d426d880dbc29f94906e4c.lock
+03/25/2025 22:33:04 Lock 140709056646448 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6e931b92caff4c79c5c56282f1e89569a0ae558.lock
+03/25/2025 22:33:04 Lock 140709056654272 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/768e95e5b4dada726d7631277a4a87ecbb236f70.lock
+03/25/2025 22:33:04 Lock 140709056658880 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933.lock
+03/25/2025 22:33:04 Lock 140709056654368 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/f1ffbab317a5c0582b8ee6756a3cdfeb0cf684bc.lock
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/README.md HTTP/1.1" 200 0
+03/25/2025 22:33:04 Starting new HTTPS connection (1): cdn-lfs-us-1.hf.co:443
+03/25/2025 22:33:04 Attempting to acquire lock 140709057085840 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9737c9ce5074907aa44d575918c5367cd877471f.lock
+03/25/2025 22:33:04 Lock 140709057085840 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9737c9ce5074907aa44d575918c5367cd877471f.lock
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/.gitattributes HTTP/1.1" 200 0
+03/25/2025 22:33:04 Attempting to acquire lock 140709057095392 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6344aac8c09253b3b630fb776ae94478aa0275b.lock
+03/25/2025 22:33:04 Lock 140709057095392 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6344aac8c09253b3b630fb776ae94478aa0275b.lock
+03/25/2025 22:33:04 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/special_tokens_map.json HTTP/1.1" 200 551
+03/25/2025 22:33:04 Attempting to release lock 140709056651248 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/492d4b2966a1763442d426d880dbc29f94906e4c.lock
+03/25/2025 22:33:04 Lock 140709056651248 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/492d4b2966a1763442d426d880dbc29f94906e4c.lock
+03/25/2025 22:33:04 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/eval_results.json HTTP/1.1" 200 566
+03/25/2025 22:33:04 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/generation_config.json HTTP/1.1" 200 124
+03/25/2025 22:33:04 Attempting to release lock 140709056654368 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/f1ffbab317a5c0582b8ee6756a3cdfeb0cf684bc.lock
+03/25/2025 22:33:04 Lock 140709056654368 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/f1ffbab317a5c0582b8ee6756a3cdfeb0cf684bc.lock
+03/25/2025 22:33:04 Attempting to release lock 140709056654272 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/768e95e5b4dada726d7631277a4a87ecbb236f70.lock
+03/25/2025 22:33:04 Lock 140709056654272 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/768e95e5b4dada726d7631277a4a87ecbb236f70.lock
+03/25/2025 22:33:04 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/README.md HTTP/1.1" 200 3196
+03/25/2025 22:33:04 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer.json HTTP/1.1" 200 1842767
+03/25/2025 22:33:04 Attempting to release lock 140709057085840 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9737c9ce5074907aa44d575918c5367cd877471f.lock
+03/25/2025 22:33:04 Lock 140709057085840 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9737c9ce5074907aa44d575918c5367cd877471f.lock
+03/25/2025 22:33:04 https://cdn-lfs-us-1.hf.co:443 "GET /repos/2b/64/2b642798915fc368e7b638986f68446b121c1d59b30075e146bd6312ee664ac2/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27model.safetensors%3B+filename%3D%22model.safetensors%22%3B&Expires=1742945584&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0Mjk0NTU4NH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmhmLmNvL3JlcG9zLzJiLzY0LzJiNjQyNzk4OTE1ZmMzNjhlN2I2Mzg5ODZmNjg0NDZiMTIxYzFkNTliMzAwNzVlMTQ2YmQ2MzEyZWU2NjRhYzIvNmU2MDAxZGEyMTA2ZDQ3NTc0OTg3NTJhMDIxZGY2YzJiZGMzMzJjNjUwYWFlNGJhZTZiMGMwMDRkY2YxNDkzMz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=hMU4ySa4IxB2jjyIyqJHsq2pi5s2U-pq-UyeoIVQb1tu102gwKrCNs3tOzRQpYtF1hvmy2VxyOTFErIOGOwyuw8Z65VE7Tg2NP~oWFivb7FvR4focrotKrYCBfHJN1ynFaxzEOEuV0V8JIjCnI4rbTUS2yDyqz-R2mmr166~dC5Zy1OvHg7nDBXvfFhqRDGu6GwL6PJg6Khki7nHL2~FfU7B0ss7iFumt88hggeeDvq7hFwxT~mnJo~DjrCI3IKyhdoZ-lTkJ3sW4Wfdm64~ywrVFEWEXQLR0xCofhfzQO3KpKN8ndbVWf-BbswlZAjY0IsxsQE5wuJXwrhMM0JS3A__&Key-Pair-Id=K24J24Z295AEI9 HTTP/1.1" 200 2200119864
+03/25/2025 22:33:04 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/config.json HTTP/1.1" 200 608
+03/25/2025 22:33:04 Attempting to release lock 140709056647984 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/4ea05f1bc289d48ba9b92eea2f58ad8acd3dce5d.lock
+03/25/2025 22:33:04 Lock 140709056647984 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/4ea05f1bc289d48ba9b92eea2f58ad8acd3dce5d.lock
+03/25/2025 22:33:04 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/.gitattributes HTTP/1.1" 200 1519
+03/25/2025 22:33:04 Attempting to release lock 140709057095392 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6344aac8c09253b3b630fb776ae94478aa0275b.lock
+03/25/2025 22:33:04 Lock 140709057095392 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6344aac8c09253b3b630fb776ae94478aa0275b.lock
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer_config.json HTTP/1.1" 200 0
+03/25/2025 22:33:04 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer.model HTTP/1.1" 302 0
+03/25/2025 22:33:04 Attempting to acquire lock 140709057101536 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/fa96b85858f4053b0142a18e2b09dbe94e3fae46.lock
+03/25/2025 22:33:04 Attempting to acquire lock 140709057091504 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+03/25/2025 22:33:04 Lock 140709057101536 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/fa96b85858f4053b0142a18e2b09dbe94e3fae46.lock
+03/25/2025 22:33:04 Lock 140709057091504 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+03/25/2025 22:33:04 Starting new HTTPS connection (1): cdn-lfs-us-1.hf.co:443
+03/25/2025 22:33:05 https://cdn-lfs-us-1.hf.co:443 "GET /repos/2b/64/2b642798915fc368e7b638986f68446b121c1d59b30075e146bd6312ee664ac2/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27tokenizer.model%3B+filename%3D%22tokenizer.model%22%3B&Expires=1742944260&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0Mjk0NDI2MH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmhmLmNvL3JlcG9zLzJiLzY0LzJiNjQyNzk4OTE1ZmMzNjhlN2I2Mzg5ODZmNjg0NDZiMTIxYzFkNTliMzAwNzVlMTQ2YmQ2MzEyZWU2NjRhYzIvOWU1NTZhZmQ0NDIxM2I2YmQxYmUyYjg1MGViYmJkOThmNTQ4MTQzN2E4MDIxYWZhZjU4ZWU3ZmIxODE4ZDM0Nz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=uw40UyXEUEysI~QtMkdtwH2CaK3ZxDhqeMu-FK3Q1PxvaL9ehsOdGKYkCRnG-kB3sEbZdhuMf3kpefUVdh8v-Dm6eI48oYe-Vu3py3tNbOaduDim0pTNm58DgWXOUU85LIB3gij7TKTqvtW7ZtFSJRll0dNo0CWWMaav8VBdj5Aol10BHyTYpb48bgUPcX77uRXnaazxkd6EuOgmhTOm0CiKTxwA4TcbqJPATaeC4FI9MPmmG8oJVQjbzMfAE0dCi3DCaLCaS7fdCy-GCuqaXEtNrdsQI6ydVBb3VGHEFzdYZ99YBs0BXhSmEBFkDM0zrYwMxGXs-JDxN6Pvq8Cv8g__&Key-Pair-Id=K24J24Z295AEI9 HTTP/1.1" 200 499723
+03/25/2025 22:33:05 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer_config.json HTTP/1.1" 200 1289
+03/25/2025 22:33:05 Attempting to release lock 140709057101536 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/fa96b85858f4053b0142a18e2b09dbe94e3fae46.lock
+03/25/2025 22:33:05 Lock 140709057101536 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/fa96b85858f4053b0142a18e2b09dbe94e3fae46.lock
+03/25/2025 22:33:05 Attempting to release lock 140709057091504 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+03/25/2025 22:33:05 Lock 140709057091504 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+03/25/2025 22:33:05 Attempting to release lock 140709056646448 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6e931b92caff4c79c5c56282f1e89569a0ae558.lock
+03/25/2025 22:33:05 Lock 140709056646448 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6e931b92caff4c79c5c56282f1e89569a0ae558.lock
+03/25/2025 22:34:08 Attempting to release lock 140709056658880 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933.lock
+03/25/2025 22:34:08 Lock 140709056658880 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933.lock
+03/25/2025 22:34:08 Attempting to release lock 140709056645344 on /tmp/92ab9d01091f109faa57337bde90fa23acf3c7582a206d542389daa50cf10474.lock
+03/25/2025 22:34:08 Lock 140709056645344 released on /tmp/92ab9d01091f109faa57337bde90fa23acf3c7582a206d542389daa50cf10474.lock
+03/25/2025 22:48:26 Attempting to acquire lock 140175547124032 on /tmp/92ab9d01091f109faa57337bde90fa23acf3c7582a206d542389daa50cf10474.lock
+03/25/2025 22:48:26 Lock 140175547124032 acquired on /tmp/92ab9d01091f109faa57337bde90fa23acf3c7582a206d542389daa50cf10474.lock
+03/25/2025 22:48:26 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /api/models/TinyLlama/TinyLlama-1.1B-Chat-v1.0/revision/main HTTP/1.1" 200 5899
+03/25/2025 22:48:27 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 Starting new HTTPS connection (1): huggingface.co:443
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/config.json HTTP/1.1" 200 0
+03/25/2025 22:48:27 Attempting to acquire lock 140175547570432 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/4ea05f1bc289d48ba9b92eea2f58ad8acd3dce5d.lock
+03/25/2025 22:48:27 Lock 140175547570432 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/4ea05f1bc289d48ba9b92eea2f58ad8acd3dce5d.lock
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/generation_config.json HTTP/1.1" 200 0
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/eval_results.json HTTP/1.1" 200 0
+03/25/2025 22:48:27 Attempting to acquire lock 140175547564720 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/768e95e5b4dada726d7631277a4a87ecbb236f70.lock
+03/25/2025 22:48:27 Attempting to acquire lock 140175547567888 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/f1ffbab317a5c0582b8ee6756a3cdfeb0cf684bc.lock
+03/25/2025 22:48:27 Lock 140175547564720 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/768e95e5b4dada726d7631277a4a87ecbb236f70.lock
+03/25/2025 22:48:27 Lock 140175547567888 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/f1ffbab317a5c0582b8ee6756a3cdfeb0cf684bc.lock
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer.json HTTP/1.1" 200 0
+03/25/2025 22:48:27 Attempting to acquire lock 140175547127584 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6e931b92caff4c79c5c56282f1e89569a0ae558.lock
+03/25/2025 22:48:27 Lock 140175547127584 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6e931b92caff4c79c5c56282f1e89569a0ae558.lock
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/special_tokens_map.json HTTP/1.1" 200 0
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/model.safetensors HTTP/1.1" 302 0
+03/25/2025 22:48:27 Attempting to acquire lock 140175547133344 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/492d4b2966a1763442d426d880dbc29f94906e4c.lock
+03/25/2025 22:48:27 Attempting to acquire lock 140175547137664 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933.lock
+03/25/2025 22:48:27 Lock 140175547133344 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/492d4b2966a1763442d426d880dbc29f94906e4c.lock
+03/25/2025 22:48:27 Lock 140175547137664 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933.lock
+03/25/2025 22:48:27 Starting new HTTPS connection (1): cdn-lfs-us-1.hf.co:443
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/.gitattributes HTTP/1.1" 200 0
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/README.md HTTP/1.1" 200 0
+03/25/2025 22:48:27 Attempting to acquire lock 140175547573552 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6344aac8c09253b3b630fb776ae94478aa0275b.lock
+03/25/2025 22:48:27 Attempting to acquire lock 140175547573168 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9737c9ce5074907aa44d575918c5367cd877471f.lock
+03/25/2025 22:48:27 Lock 140175547573552 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6344aac8c09253b3b630fb776ae94478aa0275b.lock
+03/25/2025 22:48:27 Lock 140175547573168 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9737c9ce5074907aa44d575918c5367cd877471f.lock
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/config.json HTTP/1.1" 200 608
+03/25/2025 22:48:27 Attempting to release lock 140175547570432 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/4ea05f1bc289d48ba9b92eea2f58ad8acd3dce5d.lock
+03/25/2025 22:48:27 Lock 140175547570432 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/4ea05f1bc289d48ba9b92eea2f58ad8acd3dce5d.lock
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/generation_config.json HTTP/1.1" 200 124
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/eval_results.json HTTP/1.1" 200 566
+03/25/2025 22:48:27 Attempting to release lock 140175547564720 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/768e95e5b4dada726d7631277a4a87ecbb236f70.lock
+03/25/2025 22:48:27 Lock 140175547564720 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/768e95e5b4dada726d7631277a4a87ecbb236f70.lock
+03/25/2025 22:48:27 Attempting to release lock 140175547567888 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/f1ffbab317a5c0582b8ee6756a3cdfeb0cf684bc.lock
+03/25/2025 22:48:27 Lock 140175547567888 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/f1ffbab317a5c0582b8ee6756a3cdfeb0cf684bc.lock
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer.json HTTP/1.1" 200 1842767
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/special_tokens_map.json HTTP/1.1" 200 551
+03/25/2025 22:48:27 Attempting to release lock 140175547133344 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/492d4b2966a1763442d426d880dbc29f94906e4c.lock
+03/25/2025 22:48:27 Lock 140175547133344 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/492d4b2966a1763442d426d880dbc29f94906e4c.lock
+03/25/2025 22:48:27 https://cdn-lfs-us-1.hf.co:443 "GET /repos/2b/64/2b642798915fc368e7b638986f68446b121c1d59b30075e146bd6312ee664ac2/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27model.safetensors%3B+filename%3D%22model.safetensors%22%3B&Expires=1742946508&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0Mjk0NjUwOH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmhmLmNvL3JlcG9zLzJiLzY0LzJiNjQyNzk4OTE1ZmMzNjhlN2I2Mzg5ODZmNjg0NDZiMTIxYzFkNTliMzAwNzVlMTQ2YmQ2MzEyZWU2NjRhYzIvNmU2MDAxZGEyMTA2ZDQ3NTc0OTg3NTJhMDIxZGY2YzJiZGMzMzJjNjUwYWFlNGJhZTZiMGMwMDRkY2YxNDkzMz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=cCK75F99MoVsAxrmONqnBgUlxTEjzLwLelH2fCZOad36sVLZzc3z9LnJiQlbpYDOPj6IzGcA8qqX8SdRAzYNPipsSiQE8WaVaitc8U-BMQtWQpVDGpvcEjwO3vNGTlPB8srKdeFjKDqCAVq9UZcMxKlJucQCBfwtvG6ECmbJ3VP8~m3IEoRcHP3TAYBLlJrgUJ0PXWszpQCvpkL8jjQCz9hcA684RjG2fyulpo6TUzv7Ve3aaxHCXVxhOyoycFh9L51kkqpRvKLL8cyhwuUnEg7W7DwtFy6WGDsmtl2H-yE-MJIKgrKT5AKX1GFztMNqYf10oJI5s61Ax9M77AVO~w__&Key-Pair-Id=K24J24Z295AEI9 HTTP/1.1" 200 2200119864
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/README.md HTTP/1.1" 200 3196
+03/25/2025 22:48:27 Attempting to release lock 140175547573168 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9737c9ce5074907aa44d575918c5367cd877471f.lock
+03/25/2025 22:48:27 Lock 140175547573168 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9737c9ce5074907aa44d575918c5367cd877471f.lock
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/.gitattributes HTTP/1.1" 200 1519
+03/25/2025 22:48:27 Attempting to release lock 140175547573552 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6344aac8c09253b3b630fb776ae94478aa0275b.lock
+03/25/2025 22:48:27 Lock 140175547573552 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6344aac8c09253b3b630fb776ae94478aa0275b.lock
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer.model HTTP/1.1" 302 0
+03/25/2025 22:48:27 Attempting to acquire lock 140175547135792 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+03/25/2025 22:48:27 Lock 140175547135792 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+03/25/2025 22:48:27 Starting new HTTPS connection (1): cdn-lfs-us-1.hf.co:443
+03/25/2025 22:48:27 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer_config.json HTTP/1.1" 200 0
+03/25/2025 22:48:27 Attempting to acquire lock 140175547130128 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/fa96b85858f4053b0142a18e2b09dbe94e3fae46.lock
+03/25/2025 22:48:27 Lock 140175547130128 acquired on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/fa96b85858f4053b0142a18e2b09dbe94e3fae46.lock
+03/25/2025 22:48:27 https://cdn-lfs-us-1.hf.co:443 "GET /repos/2b/64/2b642798915fc368e7b638986f68446b121c1d59b30075e146bd6312ee664ac2/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347?response-content-disposition=inline%3B+filename*%3DUTF-8%27%27tokenizer.model%3B+filename%3D%22tokenizer.model%22%3B&Expires=1742946508&Policy=eyJTdGF0ZW1lbnQiOlt7IkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc0Mjk0NjUwOH19LCJSZXNvdXJjZSI6Imh0dHBzOi8vY2RuLWxmcy11cy0xLmhmLmNvL3JlcG9zLzJiLzY0LzJiNjQyNzk4OTE1ZmMzNjhlN2I2Mzg5ODZmNjg0NDZiMTIxYzFkNTliMzAwNzVlMTQ2YmQ2MzEyZWU2NjRhYzIvOWU1NTZhZmQ0NDIxM2I2YmQxYmUyYjg1MGViYmJkOThmNTQ4MTQzN2E4MDIxYWZhZjU4ZWU3ZmIxODE4ZDM0Nz9yZXNwb25zZS1jb250ZW50LWRpc3Bvc2l0aW9uPSoifV19&Signature=R3QsGjWBdGQv1qWgc-VAgeyh97iBvTLPEtkNIpuyzLnDbzmWuhd5ccDbIANVNtM84oXugPW8YTaNHbTeuuhGy8jzOseDTxMKlcHNPmR3nUy9I0OkXvs9AsfbplrhO56vsRU74bHCaw7tu3gGMvUjUm~dSTYBAm9N3A-RxaeIR2QnK~-oSlyFZk15QLdz5bu5BAbQRrl~Jxi1B0QSu7c6v-uv-Ja12E45aHASyutxzOuRfWnvku5VYz8kanjCx5woMShBUtfiqERV4uMlsCC9Cq11HObt2NRULk6nqLIEFE7GqU3tVrYsOf1Du-6EA43GCHqa1ASvWyurtshI6tOOtw__&Key-Pair-Id=K24J24Z295AEI9 HTTP/1.1" 200 499723
+03/25/2025 22:48:27 https://huggingface.co:443 "GET /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/fe8a4ea1ffedaf415f4da2f062534de366a451e6/tokenizer_config.json HTTP/1.1" 200 1289
+03/25/2025 22:48:27 Attempting to release lock 140175547130128 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/fa96b85858f4053b0142a18e2b09dbe94e3fae46.lock
+03/25/2025 22:48:27 Lock 140175547130128 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/fa96b85858f4053b0142a18e2b09dbe94e3fae46.lock
+03/25/2025 22:48:27 Attempting to release lock 140175547135792 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+03/25/2025 22:48:27 Lock 140175547135792 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347.lock
+03/25/2025 22:48:27 Attempting to release lock 140175547127584 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6e931b92caff4c79c5c56282f1e89569a0ae558.lock
+03/25/2025 22:48:27 Lock 140175547127584 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/a6e931b92caff4c79c5c56282f1e89569a0ae558.lock
+03/25/2025 22:49:35 Attempting to release lock 140175547137664 on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933.lock
+03/25/2025 22:49:35 Lock 140175547137664 released on /root/.cache/huggingface/hub/.locks/models--TinyLlama--TinyLlama-1.1B-Chat-v1.0/6e6001da2106d4757498752a021df6c2bdc332c650aae4bae6b0c004dcf14933.lock
+03/25/2025 22:49:35 Attempting to release lock 140175547124032 on /tmp/92ab9d01091f109faa57337bde90fa23acf3c7582a206d542389daa50cf10474.lock
+03/25/2025 22:49:35 Lock 140175547124032 released on /tmp/92ab9d01091f109faa57337bde90fa23acf3c7582a206d542389daa50cf10474.lock
+03/25/2025 22:51:20 https://huggingface.co:443 "HEAD /TinyLlama/TinyLlama-1.1B-Chat-v1.0/resolve/main/config.json HTTP/1.1" 200 0
+03/25/2025 22:51:21 Prompt: 'Hello, my name is', Generated text: '\n\nJane Smith. I am a student pursuing my degree in Computer Science at [university]. I joined this club because I was fascinated'
+03/25/2025 22:51:21 Prompt: 'The president of the United States is', Generated text: 'required to make a public statement about the attack on our embassy in Baghdad. Should he issue a public statement, what kind of response should we'
+03/25/2025 22:51:21 Prompt: 'The capital of France is', Generated text: 'located in which region?\n\n2. What is the second-largest city in France by population and what is its name?\n\n3. What'
+03/25/2025 22:51:21 Prompt: 'The future of AI is', Generated text: 'all about human-machine collaboration. AI can’t create jobs or replace humans in every area of human work, but it can greatly improve them. By'
+03/25/2025 22:51:21 Prompt [1/4]: 'Hello, my name is'
+Generated: '\n\nJane Smith. I am a student pursuing my degree in Computer Science at [university]. I joined this club because I was impressed by'
+Duration: 0.59s | Tokens: 34 | Tokens/s: 58.04
+--------------------------------------------------
+03/25/2025 22:51:22 Prompt [2/4]: 'The president of the United States is'
+Generated: 'required to make a public statement about the attack on our embassy in Baghdad. Should he issue a public statement, what kind of response should we'
+Duration: 0.58s | Tokens: 33 | Tokens/s: 56.55
+--------------------------------------------------
+03/25/2025 22:51:23 Prompt [3/4]: 'The capital of France is'
+Generated: 'located in which region?\n\n2. What is the second-largest city in France by population and what is its name?\n\n3. What'
+Duration: 0.58s | Tokens: 33 | Tokens/s: 56.42
+--------------------------------------------------
+03/25/2025 22:51:23 Prompt [4/4]: 'The future of AI is'
+Generated: 'all about human-machine collaboration. AI can’t create jobs or replace humans in every area of human work, but it can accelerate certain processes and'
+Duration: 0.58s | Tokens: 33 | Tokens/s: 56.47
+--------------------------------------------------
