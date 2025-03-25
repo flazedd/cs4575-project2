@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./cs4575_project2"
+    ]
+}
