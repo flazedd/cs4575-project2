@@ -37,9 +37,9 @@ for index, row in df.head(5).iterrows():
     end_time = time.time()
     
     # Retrieve generated tokens from metadata (if available)
-    generated_tokens = outputs[0].metadata['generated_tokens']
+    generated_tokens = len(outputs[0].outputs[0].token_ids)
     total_time = end_time - start_time
-    tokens_per_second = generated_tokens / total_time if total_time > 0 else 0
+    tokens_per_second = generated_tokens / total_time
 
     # Extract and print the generated response
     response_text = outputs[0].outputs[0].text
