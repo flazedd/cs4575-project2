@@ -2,7 +2,7 @@ import time
 import requests
 import ollama
 import os
-from dockerfiles.run_inference import run_inference_on_dataset
+from ..run_inference import run_inference_on_dataset
 
 # Configuration
 MODEL_NAME = "qwen2.5:0.5b"  
@@ -37,23 +37,22 @@ def load_model():
         return False
 
 def ollama_inference(prompt):
+    print(ollama.ps())
     result = ollama.generate(model=MODEL_NAME, 
                              prompt=prompt,
                              options={
-                                        "temperature": 0.5,  
+                                        "temperature": 0,  
                                         "max_tokens": 2048
                                     })
-    return result['response'].strip()
+    return result
 
 def main():
-    dataset_path = "/app/dataset/dataset.csv"
-    output_csv = "/app/results/inference_responses.csv"
+    dataset_path = "cs4575_project2/dockerfiles/datasets/SWE-bench_Lite_oracle.csv"
+    output_csv = "cs4575_project2/dockerfiles/results/results.csv"
 
     if not wait_for_ollama():
         print("Cannot proceed without Ollama service")
         return
-
-    os.makedirs(os.path.dirname(RESULTS_PATH), exist_ok=True)
     
     if not load_model():
         print("Failed to load model, cannot proceed")
