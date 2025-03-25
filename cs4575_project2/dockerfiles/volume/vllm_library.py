@@ -31,7 +31,7 @@ def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
         # Calculate performance metrics
         time_taken = end_time - start_time
         generated_tokens = len(outputs[0].outputs[0].token_ids)
-        tokens_per_sec = generated_tokens / time_taken if time_taken > 0 else 0
+        tokens_per_sec = generated_tokens / time_taken
 
         # Extract response text
         response_text = outputs[0].outputs[0].text
@@ -62,7 +62,6 @@ def main():
         device="cuda",
         quantization="awq",
         max_model_len=16384,  # Equivalent to MLC's max_single_sequence_length
-        enforce_eager=True    # Similar to reduced prefill_chunk_size
     )
 
     # Configure sampling parameters

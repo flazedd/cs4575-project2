@@ -5,7 +5,7 @@ FROM python:3.10.16-bookworm
 WORKDIR /app
 
 # Install vllm==0.7.3 directly
-RUN pip install --no-cache-dir vllm==0.7.3
+RUN pip install --no-cache-dir vllm==0.7.3 pandas
 
 # # Copy the vllm inference library script into the container
 # COPY vllm_library.py ./
