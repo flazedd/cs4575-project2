@@ -29,19 +29,21 @@ RUN pip3 install --no-cache-dir \
 # Install Ollama
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
-# Create working directory
 WORKDIR /app
 
-# Copy your script and start script
-COPY ollama_library.py .
-COPY start.sh .
+# Copy files
+COPY ollama_library.py /app
+COPY start.sh /app
+COPY ../../datasets/SWE-bench_Lite_oracle.csv /app/dataset/dataset.csv
+COPY ../../dockerfiles/run_inference.py /app/dockerfiles/run_inference.py
+COPY ../../utils/prompt.py /app/utils/prompt.py
 
-# Make the start script executable
+# Permissions
 RUN chmod +x /app/start.sh
 
-# Create directories
-RUN mkdir -p /app/dataset /app/results
+# Prepare result directory
+RUN mkdir -p /app/results
 
-# Expose the Ollama API port
 EXPOSE 11434
+
 ENTRYPOINT ["/app/start.sh"]
