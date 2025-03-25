@@ -1,57 +1,85 @@
-from vllm import LLM
 import time
 import pandas as pd
+from vllm import LLM
+from prompt import Prompt  # Reuse the same Prompt class
 
-# Configuration
-MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
-MMLU_PATH = "datasets/mmlu_stem_subset.csv"
+# Configuration constants
+MODEL = "Qwen2.5-1.5B-Instruct-AWQ"
+DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
+OUTPUT_CSV = "results/results_vllm.csv"
 
-# Create vLLM instance
-llm = LLM(
-    model=MODEL,
-    device="cuda",          # Use NVIDIA GPU
-    quantization="awq",     # AWQ 4-bit quantization
-    max_model_len=16384,    # Decrease context window to 16384 tokens
-)
+def load_dataset(csv_path: str) -> pd.DataFrame:
+    """Load the dataset from a CSV file."""
+    return pd.read_csv(csv_path)
 
-# Load the MMLU dataset; ensure the CSV has a column named "question"
-df = pd.read_csv(MMLU_PATH)
-token_metrics = []
+def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
+    """Run inference experiment and collect performance metrics."""
+    experiment_metrics = []
+    # for index, row in df.iterrows(): 
+    for index, row in df.head(10).iterrows():
+        instance = row.to_dict()
+        prompt_obj = Prompt(instance)
+        prompt_str = prompt_obj.construct_prompt()
 
-# Set up sampling parameters
-sampling_params = llm.get_default_sampling_params()
-sampling_params.temperature = 0.0
-sampling_params.max_tokens = 2048  # Maximum output tokens
+        print(f"Processing instance {index}: {prompt_str}\n")
 
-# Iterate through the first 5 questions
-for index, row in df.head(5).iterrows():
-    question = row['question']
-    prompt = question  # Customize the prompt if needed
-    print(f"\nProcessing question {index}: {question}\n")
-    
-    # Time the generation call
-    start_time = time.time()
-    outputs = llm.generate(prompt, sampling_params)
-    end_time = time.time()
-    
-    # Retrieve generated tokens from metadata (if available)
-    generated_tokens = len(outputs[0].outputs[0].token_ids)
-    total_time = end_time - start_time
-    tokens_per_second = generated_tokens / total_time
+        # Time the generation call
+        start_time = time.time()
+        outputs = llm.generate(prompt_str, sampling_params)
+        end_time = time.time()
+        
+        # Calculate performance metrics
+        time_taken = end_time - start_time
+        generated_tokens = len(outputs[0].outputs[0].token_ids)
+        tokens_per_sec = generated_tokens / time_taken if time_taken > 0 else 0
 
-    # Extract and print the generated response
-    response_text = outputs[0].outputs[0].text
-    print("Response:\n", response_text)
-    print(f"\nToken per second: {tokens_per_second:.2f}\n")
-    
-    # Save the metric for the current prompt
-    token_metrics.append({
-        "question_index": index,
-        "token_per_sec": tokens_per_second
-    })
+        # Extract response text
+        response_text = outputs[0].outputs[0].text
+        print("Response:")
+        print(response_text)
+        print(f"\nTokens per second: {tokens_per_sec:.2f}\n")
 
-# Save all token speed metrics to a CSV file
-metrics_df = pd.DataFrame(token_metrics)
-metrics_df.to_csv("token_sec_vllm.csv", index=False)
+        # Store results
+        experiment_metrics.append({
+            "instance_id": instance.get("instance_id", ""),
+            "prompt": prompt_str,
+            "response": response_text,
+            "token_per_sec": tokens_per_sec
+        })
 
-print("Experiment is done!")
+    return experiment_metrics
+
+def save_metrics_to_csv(metrics: list, output_file: str) -> None:
+    """Save metrics to CSV file."""
+    metrics_df = pd.DataFrame(metrics)
+    metrics_df.to_csv(output_file, index=False)
+    print(f"Metrics saved to {output_file}")
+
+def main():
+    # Initialize vLLM engine with equivalent config
+    llm = LLM(
+        model=MODEL,
+        device="cuda",
+        quantization="awq",
+        max_model_len=16384,  # Equivalent to MLC's max_single_sequence_length
+        enforce_eager=True    # Similar to reduced prefill_chunk_size
+    )
+
+    # Configure sampling parameters
+    sampling_params = llm.get_default_sampling_params()
+    sampling_params.temperature = 0.0
+    sampling_params.max_tokens = 2048
+
+    # Load dataset
+    df = load_dataset(DATA_PATH)
+
+    # Run experiment
+    token_metrics = run_experiment(llm, df, sampling_params)
+
+    # Save results
+    save_metrics_to_csv(token_metrics, OUTPUT_CSV)
+
+    print("Experiment with vLLM is done!")
+
+if __name__ == "__main__":
+    main()

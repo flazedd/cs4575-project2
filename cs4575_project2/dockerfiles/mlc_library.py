@@ -5,8 +5,8 @@ from prompt import Prompt
 
 # Configuration constants
 MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
-DATA_PATH = "datasets/SWE-bench_Lite.csv"
-OUTPUT_CSV = "token_sec_mlc.csv"
+DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
+OUTPUT_CSV = "results/results_mlc.csv"
 
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
@@ -26,7 +26,7 @@ def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
     experiment_metrics = []
 
     # for index, row in df.iterrows(): 
-    for index, row in df.head(5).iterrows():
+    for index, row in df.head(10).iterrows():
         instance = row.to_dict()
         prompt_obj = Prompt(instance)
         prompt_str = prompt_obj.construct_prompt()
