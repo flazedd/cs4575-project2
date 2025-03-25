@@ -3,10 +3,8 @@ import time
 import pandas as pd
 
 # Configuration
-# MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
-# MMLU_PATH = "datasets/mmlu_stem_subset.csv"
-MODEL = "volume/Qwen2.5-1.5B-Instruct-AWQ"  # Local path to the model
-MMLU_PATH = "volume/datasets/mmlu_stem_subset.csv"  # CSV file with a "question" column
+MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
+MMLU_PATH = "datasets/mmlu_stem_subset.csv"
 
 # Create vLLM instance
 llm = LLM(

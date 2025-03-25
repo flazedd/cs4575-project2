@@ -1,82 +1,99 @@
 from mlc_llm import MLCEngine
 from mlc_llm.serve.config import EngineConfig
 import pandas as pd
+from prompt import Prompt
 
+# Configuration constants
 MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
-MMLU_PATH = "datasets/mmlu_stem_subset.csv"
-# MMLU_PATH = "volume/datasets/mmlu_stem_subset.csv"
-# MODEL = "volume/Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
+DATA_PATH = "datasets/SWE-bench_Lite.csv"
+OUTPUT_CSV = "token_sec_mlc.csv"
 
-# Create engine model
-model_engine = MLCEngine(
-    model=MODEL,
-    device="cuda",
-    engine_config=EngineConfig(
-        max_single_sequence_length=16384,  # Decrease context window by 50% (from 32768 default)
-        prefill_chunk_size=1024), # Decrease chunk size by 50% (from 2048 default to 1024)
-)
-# Load the MMLU dataset; adjust the column name if necessary.
-df = pd.read_csv(MMLU_PATH)
-# List to store token per second metrics for each prompt.
-token_metrics = []
-# Iterate through each question in the dataset.
-for index, row in df.head(5).iterrows():
-    question = row['question']
-    prompt = question  # You can customize this prompt if needed.
-    
-    print(f"Processing question {index}: {question}\n")
-    
-    # Send prompt to the MLC engine using streaming
-    for response in model_engine.chat.completions.create(
-        messages=[{"role": "user", "content": prompt}],
+
+def load_dataset(csv_path: str) -> pd.DataFrame:
+    """
+    Load the dataset from a CSV file.
+    """
+    df = pd.read_csv(csv_path)
+    return df
+
+
+def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
+    """
+    Iterate through the dataset,
+    send each prompt to the engine, print responses and metrics,
+    and return a list of token speed metrics.
+    """
+    experiment_metrics = []
+
+    # for index, row in df.iterrows(): 
+    for index, row in df.head(5).iterrows():
+        instance = row.to_dict()
+        prompt_obj = Prompt(instance)
+        prompt_str = prompt_obj.construct_prompt()
+
+        print(f"Processing question {index}: {prompt_str}\n")
+
+        # Send prompt to the engine (non-streaming)
+        response = engine.chat.completions.create(
+            messages=[{"role": "user", "content": prompt_str}],
+            model=model,
+            stream=False,
+            max_tokens=2048,
+            temperature=0.0,
+        )
+        response_content = response.choices[0].message.content
+        print("Response:")
+        print(response_content)
+        print("\n")
+
+        # Retrieve engine metrics after processing the prompt.
+        metrics = engine.metrics()
+        token_per_sec = metrics["decode_tokens_per_s"]
+        print(f"Token per seconds: {token_per_sec}\n")
+
+        # Save the metric for the current question.
+        experiment_metrics.append({
+            "instances_id": instance.get("instance_id", ""),
+            "prompt": prompt_str,
+            "response": response_content,
+            "token_per_sec": token_per_sec
+        })
+
+    return experiment_metrics
+
+
+def save_metrics_to_csv(metrics: list, output_file: str) -> None:
+    """
+    Save token metrics to a CSV file.
+    """
+    metrics_df = pd.DataFrame(metrics)
+    metrics_df.to_csv(output_file, index=False)
+    print(f"Metrics saved to {output_file}")
+
+
+def main():
+    # Create engine instance
+    engine = MLCEngine(
         model=MODEL,
-        stream=True,
-        max_tokens=2048,  # Maximum tokens for output
-        temperature=0.0,
-    ):
-        for choice in response.choices:
-            # Print the streamed answer output
-            print(choice.delta.content, end="", flush=True)
-    print("\n")
-    
-    # Retrieve engine metrics after processing the prompt.
-    metrics = model_engine.metrics()
-    token_per_sec = metrics["decode_tokens_per_s"]
-    print(f"Token per seconds: {token_per_sec}\n")
-    
-    # Save the metric for the current question.
-    token_metrics.append({
-        "question_index": index,
-        "token_per_sec": token_per_sec
-    })
+        device="cuda",
+        engine_config=EngineConfig(
+            max_single_sequence_length=16384,  # Decrease context window by 50%
+            prefill_chunk_size=1024,           # Decrease chunk size by 50%
+        )
+    )
 
-# Save all token per second metrics to a CSV file.
-metrics_df = pd.DataFrame(token_metrics)
-metrics_df.to_csv("token_sec_mlc.csv", index=False)
+    # Load dataset from CSV
+    df = load_dataset(DATA_PATH)
 
-print("Experiment is done, closing engine now")
-model_engine.terminate()
+    # Run the experiment
+    token_metrics = run_experiment(engine, df, MODEL)
 
-# # Test prompt
-# prompt = """
-# You are interested in studying a rare type of breast cancer in a mouse model. 
-# Your research up until now has shown that the cancer cells show low expression of a key tumor suppressor gene. 
-# Which of these is the most suitable course of action to study the cause of gene silencing?
-# """
+    # Save metrics to CSV
+    save_metrics_to_csv(token_metrics, OUTPUT_CSV)
 
-# # Run chat completion in OpenAI API.
-# for response in model_engine.chat.completions.create(
-#     messages=[{"role": "user", "content": f"{prompt}"}],
-#     model=MODEL,
-#     stream=True,
-#     max_tokens=2048, # Amount of max output tokens
-#     temperature = 0.0,
-# ):
-#     for choice in response.choices:
-#         print(choice.delta.content, end="", flush=True)
-# print("\n")
+    print("Experiment with MLC is done, closing engine now")
+    engine.terminate()
 
-# # Engine metrics for token per seconds
-# metrics = model_engine.metrics()
-# token_per_sec = metrics["decode_tokens_per_s"]
-# print(f"Token per seconds: {token_per_sec}")
+
+if __name__ == "__main__":
+    main()
