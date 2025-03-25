@@ -1,4 +1,4 @@
-FROM python:3.11.11-bookworm
+FROM python:3.10.16-bookworm
 
 # Download and install the CUDA keyring package
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb && \
@@ -24,8 +24,12 @@ WORKDIR /app
 # Install the MLC packages directly
 RUN pip install --no-cache-dir --pre -U -f https://mlc.ai/wheels mlc-llm-nightly-cu123 mlc-ai-nightly-cu123
 
-# Copy the MLC inference library script into the container
-COPY mlc_library.py ./
+# # Copy the MLC inference library script into the container
+# COPY mlc_library.py ./
+# # Copy datasets directory into container
+# COPY datasets/ ./
+# # Copy model into container
+# COPY Qwen2.5-1.5B-Instruct-q4f16_1-MLC ./
 
 # Set the command to run the inference script
 CMD ["python", "mlc_library.py"]
