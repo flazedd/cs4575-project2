@@ -7,7 +7,7 @@ class Prompt:
         self.hints_text = instance.get("hints_text", "")
         self.version = instance.get("version", "")
         self.environment_setup_commit = instance.get("environment_setup_commit", "")
-        self.full_text = instance.get("text", "")
+        #  self.full_text = instance.get("text", "")
 
     def construct_prompt(self):
         prompt = f"""
@@ -21,9 +21,6 @@ Instance ID: {self.instance_id}
 
 Issue Description:
 {self.problem_statement}
-
-Full Context:
-{self.full_text}
 
 Hints (if any):
 {self.hints_text}
