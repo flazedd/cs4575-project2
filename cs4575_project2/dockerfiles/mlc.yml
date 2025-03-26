@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  mlc:
+    build:
+      context: .
+      dockerfile: mlc.Dockerfile
+    container_name: mlc_container
+    volumes:
+      - ./volume:/app:rw
+    runtime: nvidia  # <-- Add this line instead of 'deploy'
+    stdin_open: true
+    tty: true
