@@ -1,6 +1,7 @@
 import pandas as pd
 import os
-from ..scripts.prompt import Prompt
+import time
+from prompt import Prompt
 
 def run_inference_on_dataset(dataset_path, inference_method, output_csv):
     df = pd.read_csv(dataset_path)
@@ -10,7 +11,10 @@ def run_inference_on_dataset(dataset_path, inference_method, output_csv):
         instance = row.to_dict()
         prompt_obj = Prompt(instance)
         prompt_str = prompt_obj.construct_prompt()
+        
+        start_time = time.time()
         response = inference_method(prompt_str)
+        end_time = time.time()
         
         responses.append({
             "instance_id": instance.get("instance_id", ""),
