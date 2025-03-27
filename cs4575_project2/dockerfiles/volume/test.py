@@ -1,5 +1,11 @@
 import os
+import torch
 
+def check_gpu():
+    if torch.cuda.is_available():
+        print(f"GPU is available! CUDA device: {torch.cuda.get_device_name(0)}")
+    else:
+        print("GPU is not available. Running on CPU.")
 
 def list_files_in_current_directory():
     current_dir = os.getcwd()
@@ -20,4 +26,6 @@ def list_files_in_current_directory():
 
 
 if __name__ == "__main__":
+    print('Main...')
     list_files_in_current_directory()
+    check_gpu()

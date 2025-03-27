@@ -1,13 +1,14 @@
+import os
+import pandas as pd
 from mlc_llm import MLCEngine
 from mlc_llm.serve.config import EngineConfig
-import pandas as pd
 from prompt import Prompt
+from utils import get_next_file_path
 
 # Configuration constants
 MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
-OUTPUT_CSV = "results/results_mlc.csv"
-
+RESULTS_DIR = "results/mlc"
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
     """
@@ -25,7 +26,6 @@ def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
     """
     experiment_metrics = []
 
-    # for index, row in df.iterrows(): 
     for index, row in df.head(10).iterrows():
         instance = row.to_dict()
         prompt_obj = Prompt(instance)
@@ -88,8 +88,11 @@ def main():
     # Run the experiment
     token_metrics = run_experiment(engine, df, MODEL)
 
+    # Determine the next available file path
+    output_file = get_next_file_path(RESULTS_DIR, 'mlc')
+
     # Save metrics to CSV
-    save_metrics_to_csv(token_metrics, OUTPUT_CSV)
+    save_metrics_to_csv(token_metrics, output_file)
 
     print("Experiment with MLC is done, closing engine now")
     engine.terminate()

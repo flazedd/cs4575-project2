@@ -2,20 +2,24 @@ import time
 import pandas as pd
 from vllm import LLM
 from prompt import Prompt  # Reuse the same Prompt class
+from utils import get_next_file_path  # Import the generalized function
 
 # Configuration constants
 MODEL = "Qwen2.5-1.5B-Instruct-AWQ"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
-OUTPUT_CSV = "results/results_vllm.csv"
+RESULTS_DIR = "results/vllm"
+FILE_PREFIX = "vllm"
+
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
     """Load the dataset from a CSV file."""
     return pd.read_csv(csv_path)
 
+
 def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
     """Run inference experiment and collect performance metrics."""
     experiment_metrics = []
-    # for index, row in df.iterrows(): 
+    # for index, row in df.iterrows():
     for index, row in df.head(10).iterrows():
         instance = row.to_dict()
         prompt_obj = Prompt(instance)
@@ -27,7 +31,7 @@ def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
         start_time = time.time()
         outputs = llm.generate(prompt_str, sampling_params)
         end_time = time.time()
-        
+
         # Calculate performance metrics
         time_taken = end_time - start_time
         generated_tokens = len(outputs[0].outputs[0].token_ids)
@@ -49,13 +53,18 @@ def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
 
     return experiment_metrics
 
+
 def save_metrics_to_csv(metrics: list, output_file: str) -> None:
     """Save metrics to CSV file."""
     metrics_df = pd.DataFrame(metrics)
     metrics_df.to_csv(output_file, index=False)
     print(f"Metrics saved to {output_file}")
 
+
 def main():
+    # Get the next available file path using the generalized function
+    output_csv = get_next_file_path(RESULTS_DIR, FILE_PREFIX)
+
     # Initialize vLLM engine with equivalent config
     llm = LLM(
         model=MODEL,
@@ -76,9 +85,10 @@ def main():
     token_metrics = run_experiment(llm, df, sampling_params)
 
     # Save results
-    save_metrics_to_csv(token_metrics, OUTPUT_CSV)
+    save_metrics_to_csv(token_metrics, output_csv)
 
     print("Experiment with vLLM is done!")
+
 
 if __name__ == "__main__":
     main()
