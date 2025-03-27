@@ -19,14 +19,16 @@ import os
 
 save_directory = './results'
 images = ['mlc', 'ollama', 'vllm']
-num_iterations = 5  # Set the number of iterations
+num_iterations = 5  # Total number of iterations
+first_iteration = 0
+last_iteration = num_iterations - 1
 
-for i in range(num_iterations):
+# Run the first iteration explicitly
+for i in [first_iteration] + list(range(1, last_iteration)) + [last_iteration]:
     # Shuffle the images randomly in each iteration
     random.shuffle(images)
     for image in images:
-        utils.print_color(f'Working on iterati'
-                          f'on {i} and image {image}')
+        utils.print_color(f'Working on iteration {i} and image {image}')
         # Create a directory for the image if it doesn't exist
         image_dir = os.path.join(save_directory, image)
         os.makedirs(image_dir, exist_ok=True)
