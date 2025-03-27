@@ -24,8 +24,9 @@ num_iterations = 5  # Set the number of iterations
 for i in range(num_iterations):
     # Shuffle the images randomly in each iteration
     random.shuffle(images)
-
     for image in images:
+        utils.print_color(f'Working on iterati'
+                          f'on {i} and image {image}')
         # Create a directory for the image if it doesn't exist
         image_dir = os.path.join(save_directory, image)
         os.makedirs(image_dir, exist_ok=True)

@@ -3,7 +3,7 @@ import pandas as pd
 from vllm import LLM
 from prompt import Prompt  # Reuse the same Prompt class
 from utils import get_next_file_path  # Import the generalized function
-
+from constants import *
 # Configuration constants
 MODEL = "Qwen2.5-1.5B-Instruct-AWQ"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
@@ -20,7 +20,7 @@ def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
     """Run inference experiment and collect performance metrics."""
     experiment_metrics = []
     # for index, row in df.iterrows():
-    for index, row in df.head(10).iterrows():
+    for index, row in df.head(TASKS).iterrows():
         instance = row.to_dict()
         prompt_obj = Prompt(instance)
         prompt_str = prompt_obj.construct_prompt()
@@ -35,7 +35,8 @@ def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
         # Calculate performance metrics
         time_taken = end_time - start_time
         generated_tokens = len(outputs[0].outputs[0].token_ids)
-        tokens_per_sec = generated_tokens / time_taken
+        # tokens_per_sec = generated_tokens / time_taken
+        tokens_per_sec = round(generated_tokens / time_taken)
 
         # Extract response text
         response_text = outputs[0].outputs[0].text

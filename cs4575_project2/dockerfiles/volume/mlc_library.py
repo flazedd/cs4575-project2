@@ -4,6 +4,7 @@ from mlc_llm import MLCEngine
 from mlc_llm.serve.config import EngineConfig
 from prompt import Prompt
 from utils import get_next_file_path
+from constants import *
 
 # Configuration constants
 MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
@@ -26,7 +27,7 @@ def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
     """
     experiment_metrics = []
 
-    for index, row in df.head(10).iterrows():
+    for index, row in df.head(TASKS).iterrows():
         instance = row.to_dict()
         prompt_obj = Prompt(instance)
         prompt_str = prompt_obj.construct_prompt()
@@ -48,7 +49,9 @@ def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
 
         # Retrieve engine metrics after processing the prompt.
         metrics = engine.metrics()
+        # metrics["decode_tokens_per_s"] = round(metrics["decode_tokens_per_s"])
         token_per_sec = metrics["decode_tokens_per_s"]
+        token_per_sec = round(token_per_sec)
         print(f"Token per seconds: {token_per_sec}\n")
 
         # Save the metric for the current question.
