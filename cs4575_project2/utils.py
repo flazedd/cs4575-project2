@@ -27,16 +27,26 @@ def print_color(message, success=True):
     print(f"{timestamp} {prefix} {message}")
 
 
-
 def run_docker_container(image_name):
-    """Runs a Docker container with the given image name and streams logs in real-time."""
-
+    """Runs a Docker container with GPU support and volume mapping."""
     client = docker.from_env()
+    volume_path = os.path.join(os.getcwd(), 'dockerfiles', 'volume')
 
-    print_color(f"Running {image_name} container...")
+    if os.path.exists(volume_path):
+        print(f"The directory exists: {volume_path}")
+    else:
+        print(f"The directory does not exist: {volume_path}")
+
+    print(f'{volume_path}')
+
+    # k = input(f'enter y/n: ')
+
+    print(f"Running {image_name} with {volume_path} path with GPU support and volume mapping...")
 
     container = client.containers.run(
         image_name,
+        runtime="nvidia",  # Enables GPU support
+        volumes={volume_path: {'bind': '/app', 'mode': 'rw'}},
         remove=True,
         stdout=True,
         stderr=True,

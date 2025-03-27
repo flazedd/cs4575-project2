@@ -1,15 +1,15 @@
 import os
 
 
-def list_files_in_volumes():
-    volumes_dir = os.path.join(os.path.dirname(__file__), 'volume')
+def list_files_in_current_directory():
+    current_dir = os.getcwd()
+    parent_dir = os.path.basename(os.path.dirname(current_dir))
 
-    if not os.path.exists(volumes_dir):
-        print("The 'volumes' directory does not exist.")
-        return
+    print(f"Parent Directory: {parent_dir}")
+    print(f"Current Working Path: {current_dir}\n")
 
-    for file_name in os.listdir(volumes_dir):
-        file_path = os.path.join(volumes_dir, file_name)
+    for file_name in os.listdir(current_dir):
+        file_path = os.path.join(current_dir, file_name)
         if os.path.isfile(file_path):
             try:
                 with open(file_path, 'r', encoding='utf-8') as file:
@@ -20,4 +20,4 @@ def list_files_in_volumes():
 
 
 if __name__ == "__main__":
-    list_files_in_volumes()
+    list_files_in_current_directory()
