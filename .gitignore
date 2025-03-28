@@ -1,4 +1,8 @@
 .idea
 **/__pycache__/**
+**/models/**
 .conda
 .venv
+.python-version
+.pyproject.toml
+.poetry.lock

@@ -1,16 +1,44 @@
 import cs4575_project2.utils as utils
 from cs4575_project2.energi_custom import EnergiCustom
-
-
-save_directory = './results/result_1.csv'
-energi = EnergiCustom(output=save_directory, measure_gpu=True)
-energi.start()
-# def dummy_task():
-#     for i in range(3):
-#         time.sleep(i)
-#         utils.print_color(f'Sleeping for {i}')
+import random
+import os
 #
-# dummy_task()
-utils.run_docker_container("pytorch_latest")
-energi.stop()
+# save_directory = './results/result_1.csv'
+# images = ['mlc', 'ollama', 'vllm']
+# energi = EnergiCustom(output=save_directory, measure_gpu=True)
+# energi.start()
+# # def dummy_task():
+# #     for i in range(3):
+# #         time.sleep(i)
+# #         utils.print_color(f'Sleeping for {i}')
+# #
+# # dummy_task()
+# utils.run_docker_with_gpu(image_name=)
+# utils.run_docker_container("pytorch_latest")
+# energi.stop()
 
+save_directory = './results'
+images = ['mlc', 'ollama', 'vllm']
+num_iterations = 5  # Total number of iterations
+first_iteration = 0
+last_iteration = num_iterations - 1
+
+# Run the first iteration explicitly
+for i in [first_iteration] + list(range(1, last_iteration)) + [last_iteration]:
+    # Shuffle the images randomly in each iteration
+    random.shuffle(images)
+    for image in images:
+        utils.print_color(f'Working on iteration {i} and image {image}')
+        # Create a directory for the image if it doesn't exist
+        image_dir = os.path.join(save_directory, image)
+        os.makedirs(image_dir, exist_ok=True)
+
+        # Define the save path for the CSV
+        save_path = os.path.join(image_dir, f"{image}_{i}.csv")
+
+        energi = EnergiCustom(output=save_path, measure_gpu=True)
+        energi.start()
+
+        utils.run_docker_with_gpu(image_name=image)
+
+        energi.stop()

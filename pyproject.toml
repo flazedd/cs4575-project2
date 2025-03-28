@@ -17,6 +17,7 @@ docker = "^7.1.0"
 pytz = "^2025.1"
 transformers = "^4.49.0"
 ipykernel = "^6.29.5"
+keyboard = "^0.13.5"
 
 
 [build-system]
