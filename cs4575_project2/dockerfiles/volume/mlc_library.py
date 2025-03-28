@@ -1,4 +1,6 @@
 import os
+import time
+
 import pandas as pd
 from mlc_llm import MLCEngine
 from mlc_llm.serve.config import EngineConfig
@@ -31,7 +33,7 @@ def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
         instance = row.to_dict()
         prompt_obj = Prompt(instance)
         prompt_str = prompt_obj.construct_prompt()
-
+        start_time = time.time()
         print(f"Processing question {index}: {prompt_str}\n")
 
         # Send prompt to the engine (non-streaming)
@@ -46,6 +48,7 @@ def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
         print("Response:")
         print(response_content)
         print("\n")
+        end_time = time.time()
 
         # Retrieve engine metrics after processing the prompt.
         metrics = engine.metrics()
@@ -54,12 +57,15 @@ def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
         token_per_sec = round(token_per_sec)
         print(f"Token per seconds: {token_per_sec}\n")
 
+        elapsed_time_seconds = round(end_time - start_time)
+
         # Save the metric for the current question.
         experiment_metrics.append({
-            "instances_id": instance.get("instance_id", ""),
+            "instance_id": instance.get("instance_id", ""),
             "prompt": prompt_str,
             "response": response_content,
-            "token_per_sec": token_per_sec
+            "tokens_per_sec": token_per_sec,
+            "seconds": elapsed_time_seconds,
         })
 
     return experiment_metrics

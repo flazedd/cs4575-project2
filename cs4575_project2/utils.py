@@ -173,3 +173,57 @@ def remove_all_docker_containers():
     except Exception as e:
         print(f"An error occurred: {e}")
 
+
+def sync_common_files(project_results, local_results, images):
+    """
+    Synchronizes specific subdirectories, keeping only files that exist in both locations.
+
+    Args:
+        project_results (str): Path to the first results directory (e.g., project folder).
+        local_results (str): Path to the second results directory (e.g., local folder).
+        images (list): List of subdirectories inside results to consider.
+    """
+    def get_files_by_folder(root, subdirs):
+        """Returns a dictionary with folder paths as keys and sets of filenames as values."""
+        files_dict = {}
+        for subdir in subdirs:
+            full_subdir_path = os.path.join(root, subdir)
+            if not os.path.exists(full_subdir_path):
+                continue  # Skip if the subdirectory doesn't exist
+            for dirpath, _, filenames in os.walk(full_subdir_path):
+                relative_path = os.path.relpath(dirpath, root)  # Get relative path from root
+                files_dict[relative_path] = set(filenames)  # Store filenames in a set
+        return files_dict
+
+    # Get file lists for both directories
+    project_files = get_files_by_folder(project_results, images)
+    local_files = get_files_by_folder(local_results, images)
+
+    # Find common subdirectories
+    common_folders = set(project_files.keys()) & set(local_files.keys())
+
+    # Process each common folder
+    for folder in common_folders:
+        project_folder_path = os.path.join(project_results, folder)
+        local_folder_path = os.path.join(local_results, folder)
+
+        # Get common files in the current folder
+        common_files = project_files[folder] & local_files[folder]
+
+        # Remove files that are not in both locations
+        for file in project_files[folder] - common_files:
+            file_path = os.path.join(project_folder_path, file)
+            print_color(f"Removing from project: {file_path}")
+            os.remove(file_path)
+
+        for file in local_files[folder] - common_files:
+            file_path = os.path.join(local_folder_path, file)
+            print_color(f"Removing from local: {file_path}")
+            os.remove(file_path)
+
+    print_color("Synchronization complete. Only common files are kept.")
+
+
+def count_files_in_folder(folder):
+    """Counts the number of files in a given folder."""
+    return sum(len(files) for _, _, files in os.walk(folder))
