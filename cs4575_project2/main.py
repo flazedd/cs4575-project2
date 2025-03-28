@@ -2,15 +2,18 @@ import sys
 import time
 
 import cs4575_project2.utils as utils
+from cs4575_project2.analysis.violin_plot import results
 from cs4575_project2.energi_custom import EnergiCustom
 import random
 import os
 
-save_directory = './results'
+save_directory = 'results'
+
 images = ['mlc', 'ollama', 'vllm']
+llm__path = f"./dockerfiles/volume/{results}"
 
-
-utils.sync_common_files("./dockerfiles/volume/results", "./results", images=images)
+utils.ensure_directories_exist(save_directory, images)
+utils.sync_common_files(llm__path, save_directory, images=images)
 
 
 num_iterations = 10  # Total number of iterations

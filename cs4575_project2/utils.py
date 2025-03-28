@@ -1,9 +1,7 @@
 from colorama import Fore, Style
 import docker
 import os
-import sys
 from datetime import datetime
-import pytz
 import subprocess
 
 def create_framework_dirs(frameworks, base_dir="./results"):
@@ -107,9 +105,6 @@ def run_docker_ps1(image_name):
     print(f"Successfully ran {image_name} with GPU support and volume mapping.")
 
 
-import os
-import subprocess
-
 def run_docker_with_gpu(image_name: str) -> None:
     """
     Run a Docker container with GPU support, mounting the 'dockerfiles/volume' directory as a volume.
@@ -138,10 +133,6 @@ def run_docker_with_gpu(image_name: str) -> None:
 
     remove_all_docker_containers()
 
-
-
-
-import subprocess
 
 def remove_all_docker_containers():
     """
@@ -227,3 +218,41 @@ def sync_common_files(project_results, local_results, images):
 def count_files_in_folder(folder):
     """Counts the number of files in a given folder."""
     return sum(len(files) for _, _, files in os.walk(folder))
+
+
+
+def ensure_directories_exist(save_directory, images):
+    """
+    Ensure that the directories for each image under save_directory and llm_path exist.
+    If they do not exist, the function will create them.
+
+    :param save_directory: The base directory for saving images.
+    :param images: A list of image names for which directories need to be created.
+    """
+    # Construct the llm_path using the save_directory
+    llm_path = f"./dockerfiles/volume/{save_directory}"
+
+    for image in images:
+        # Define full paths for both directories
+        save_image_path = os.path.join(save_directory, image)
+        llm_image_path = os.path.join(llm_path, image)
+
+        # Check if the save_image_path exists, if not, create it
+        if not os.path.exists(save_image_path):
+            os.makedirs(save_image_path)
+            print(f"Created directory: {save_image_path}")
+        else:
+            print(f"Directory already exists: {save_image_path}")
+
+        # Check if the llm_image_path exists, if not, create it
+        if not os.path.exists(llm_image_path):
+            os.makedirs(llm_image_path)
+            print(f"Created directory: {llm_image_path}")
+        else:
+            print(f"Directory already exists: {llm_image_path}")
+
+
+# Example usage:
+save_directory = 'results'
+images = ['mlc', 'ollama', 'vllm']
+ensure_directories_exist(save_directory, images)
