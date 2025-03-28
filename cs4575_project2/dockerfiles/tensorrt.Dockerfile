@@ -29,7 +29,7 @@ RUN apt-get -y install libopenmpi-dev
 RUN pip install tensorrt-llm --extra-index-url https://pypi.nvidia.com
 
 # Copy the inference library script into the container
-COPY tensorrt_library.py ./
+# COPY tensorrt_library.py ./
 
 # Set the command to run the training script using a shell for variable expansion
 CMD ["python", "tensorrt_library.py"]
