@@ -65,13 +65,15 @@ def main():
         token_count = len(llm.tokenizer.encode(generated_text))
         tokens_per_sec = token_count / duration if duration > 0 else 0
 
+        duration = round(duration)
+
         # Save the metric for the current question.
         experiment_metrics.append({
-            "instances_id": instance.get("instance_id", ""),
+            "instance_id": instance.get("instance_id", ""),
             "prompt": prompt_str,
             "response": generated_text,
-            "token_per_sec": tokens_per_sec,
-            "total_time": duration
+            "tokens_per_sec": tokens_per_sec,
+            "seconds": duration
         })
 
     return experiment_metrics
