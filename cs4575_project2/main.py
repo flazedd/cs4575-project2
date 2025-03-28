@@ -3,8 +3,8 @@ import cs4575_project2.utils as utils
 from cs4575_project2.energi_custom import EnergiCustom
 import random
 import os
-
-save_directory = 'results'
+from cs4575_project2.dockerfiles.volume.constants import RESULT_FOLDER
+save_directory = RESULT_FOLDER
 
 images = ['mlc', 'ollama', 'vllm']
 llm_path = f"./dockerfiles/volume/{save_directory}"
