@@ -13,22 +13,14 @@ utils.ensure_directories_exist(save_directory, llm_path, images)
 utils.sync_common_files(llm_path, save_directory, images=images)
 
 
-num_iterations = 10  # Total number of iterations
-first_iteration = 0
-last_iteration = num_iterations - 1
-
-def count_files_in_folder(folder):
-    """Counts the number of files in a given folder."""
-    return sum(len(files) for _, _, files in os.walk(folder))
-
-
-image_counts = {img: count_files_in_folder(os.path.join(save_directory, img)) for img in images}
+num_iterations = 10
+image_counts = {img: utils.count_files_in_folder(os.path.join(save_directory, img)) for img in images}
 min_count = min(image_counts.values())
 lowest_count_images = [img for img, count in image_counts.items() if count == min_count]
 
 # Run the first iteration explicitly
-for i in [first_iteration] + list(range(1, last_iteration)) + [last_iteration]:
-    if i == first_iteration:
+for i in range(num_iterations):
+    if i == 0:
         process_order = lowest_count_images  # First iteration: prioritize least-populated folders
         utils.print_color(f'Unfinished work detected, first working on {process_order} to restore balance')
     else:
@@ -43,7 +35,9 @@ for i in [first_iteration] + list(range(1, last_iteration)) + [last_iteration]:
         os.makedirs(image_dir, exist_ok=True)
 
         # Define the save path for the CSV
-        save_path = os.path.join(image_dir, f"{image}_{i}.csv")
+        # save_path = os.path.join(image_dir, f"{image}_{i}.csv")
+        next_csv_number = utils.get_next_csv_number(image_dir)
+        save_path = os.path.join(image_dir, f"{image}_{next_csv_number}.csv")
 
         energi = EnergiCustom(output=save_path, measure_gpu=True)
         energi.start()
