@@ -7,6 +7,7 @@ import pandas as pd
 
 # Configuration constants
 MODEL = "./TinyLlama-1.1B-Chat-v1.0"
+# MODEL = "./Qwen2.5-1.5B-Instruct-AWQ"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
 RESULTS_DIR = "results/tensorrt"
 

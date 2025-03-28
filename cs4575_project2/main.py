@@ -13,7 +13,7 @@ images = ['mlc', 'ollama', 'vllm']
 utils.sync_common_files("./dockerfiles/volume/results", "./results", images=images)
 
 
-num_iterations = 5  # Total number of iterations
+num_iterations = 10  # Total number of iterations
 first_iteration = 0
 last_iteration = num_iterations - 1
 
