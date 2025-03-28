@@ -37,6 +37,7 @@ def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
         generated_tokens = len(outputs[0].outputs[0].token_ids)
         # tokens_per_sec = generated_tokens / time_taken
         tokens_per_sec = round(generated_tokens / time_taken)
+        time_taken = round(time_taken)
 
         # Extract response text
         response_text = outputs[0].outputs[0].text
@@ -49,7 +50,8 @@ def run_experiment(llm: LLM, df: pd.DataFrame, sampling_params: dict) -> list:
             "instance_id": instance.get("instance_id", ""),
             "prompt": prompt_str,
             "response": response_text,
-            "token_per_sec": tokens_per_sec
+            "tokens_per_sec": tokens_per_sec,
+            "seconds": time_taken,
         })
 
     return experiment_metrics

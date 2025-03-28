@@ -16,14 +16,15 @@ def run_inference_on_dataset(dataset_path, inference_method, output_csv):
         start_time = time.time()
         response = inference_method(prompt_str)
         end_time = time.time()
+        elapsed_time_seconds = round(end_time - start_time)
         
         responses.append({
             "instance_id": instance.get("instance_id", ""),
             "prompt": prompt_str,
             "response": response['response'].strip(),
             # "tokens/s": (response['eval_count'] / ((response['eval_duration'] / 1e9)))
-            "tokens/s": round(response['eval_count'] / (response['eval_duration'] / 1e9))
-
+            "tokens_per_sec": round(response['eval_count'] / (response['eval_duration'] / 1e9)),
+            "seconds": elapsed_time_seconds
         })
         print(f"Generated response for instance: {instance.get('instance_id', '')}")
         
