@@ -1,0 +1,1 @@
+docker run --gpus all -v %~dp0:/app:rw -it tensorrt

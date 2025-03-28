@@ -1,0 +1,1 @@
+docker build -t volume_test -f volume.Dockerfile .

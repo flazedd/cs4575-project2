@@ -64,7 +64,7 @@ Output only the patch file.","```diff
 +SELECT a.[hello]
 ```
 
-This patch fixes the issue by adding an alias 'a' to the query, which should now correctly handle aliases without joining conditions.",57.759817578914365
+This patch fixes the issue by adding an alias 'a' to the query, which should now correctly handle aliases without joining conditions.",45
 sqlfluff__sqlfluff-2419,"You are a software engineer tasked with resolving a GitHub issue.
 
 Repository: sqlfluff/sqlfluff
@@ -146,7 +146,7 @@ diff --git a/sqlfluff/RuleL060.py b/sqlfluff/RuleL060.py
  
      def get_rule(self) -> str:
          return self._rule
-```",53.99047905936416
+```",59
 sqlfluff__sqlfluff-1733,"You are a software engineer tasked with resolving a GitHub issue.
 
 Repository: sqlfluff/sqlfluff
@@ -315,7 +315,7 @@ index 0a1579a..6b1d891 100644
  FROM example
 ```
 
-```diff",79.33823127637606
+```diff",45
 sqlfluff__sqlfluff-1517,"You are a software engineer tasked with resolving a GitHub issue.
 
 Repository: sqlfluff/sqlfluff
@@ -413,7 +413,7 @@ diff --git a/sqlfluff/src/sqlfluff/core/linter/linter.py b/sqlfluff/src/sqlfluff
 
 This patch ensures that the linter correctly identifies and handles `;;` as part of a double semicolon. It raises an error if the tokens are not in the expected format.
 
-Please note that this is just one possible solution. The actual implementation may vary depending on your specific requirements and the context in which you're using SQLFluff.",62.67493779673028
+Please note that this is just one possible solution. The actual implementation may vary depending on your specific requirements and the context in which you're using SQLFluff.",68
 sqlfluff__sqlfluff-1763,"You are a software engineer tasked with resolving a GitHub issue.
 
 Repository: sqlfluff/sqlfluff
@@ -637,4 +637,4 @@ diff --git a/sqlfluff.sqlb tsqlfluff.sqlb
 +encoding = utf-8
  encoding = utf-8
 
-```",59.957460644792214
+```",73

@@ -32,4 +32,4 @@ RUN pip install --no-cache-dir --pre -U -f https://mlc.ai/wheels mlc-llm-nightly
 # COPY Qwen2.5-1.5B-Instruct-q4f16_1-MLC ./
 
 # Set the command to run the inference script
-CMD ["python", "mlc_library.py"]
+CMD ["python", "/app/mlc_library.py"]

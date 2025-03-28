@@ -1,0 +1,1 @@
+docker build -t tensorrt -f tensorrt.Dockerfile .

@@ -4,6 +4,7 @@ import os
 import sys
 from datetime import datetime
 import pytz
+import subprocess
 
 def create_framework_dirs(frameworks, base_dir="./results"):
     """
@@ -27,16 +28,26 @@ def print_color(message, success=True):
     print(f"{timestamp} {prefix} {message}")
 
 
-
 def run_docker_container(image_name):
-    """Runs a Docker container with the given image name and streams logs in real-time."""
-
+    """Runs a Docker container with GPU support and volume mapping."""
     client = docker.from_env()
+    volume_path = os.path.join(os.getcwd(), 'dockerfiles', 'volume')
 
-    print_color(f"Running {image_name} container...")
+    if os.path.exists(volume_path):
+        print(f"The directory exists: {volume_path}")
+    else:
+        print(f"The directory does not exist: {volume_path}")
+
+    print(f'{volume_path}')
+
+    # k = input(f'enter y/n: ')
+
+    print(f"Running {image_name} with {volume_path} path with GPU support and volume mapping...")
 
     container = client.containers.run(
         image_name,
+        runtime="nvidia",  # Enables GPU support
+        volumes={volume_path: {'bind': '/app', 'mode': 'rw'}},
         remove=True,
         stdout=True,
         stderr=True,
@@ -60,125 +71,105 @@ def run_docker_container(image_name):
             log_buffer = lines[-1]  # Keep the incomplete part for the next iteration
 
 
+def run_docker_ps1(image_name):
+    """Runs a Docker container with GPU support and volume mapping, executing the PowerShell command."""
+
+    # Get the path to the volume folder
+    volume_path = os.path.join(os.getcwd(), 'dockerfiles', 'volume')
+
+    if os.path.exists(volume_path):
+        print(f"The directory exists: {volume_path}")
+    else:
+        print(f"The directory does not exist: {volume_path}")
+        return
+
+    print(f"Running {image_name} with GPU support...")
+
+    # Prepare the PowerShell command
+    ps_command = f'docker run --gpus all --volume {volume_path}:/app:rw --interactive {image_name}'
+
+    try:
+        # Run the PowerShell command via subprocess and capture the output
+        result = subprocess.run(ps_command, shell=True, check=True, capture_output=True, text=True)
+
+        # Print the standard output and standard error (if any)
+        print("Output:\n", result.stdout)
+        if result.stderr:
+            print("Error:\n", result.stderr)
+
+    except subprocess.CalledProcessError as e:
+        print(f"Error running command: {e}")
+        if e.stdout:
+            print("Output:\n", e.stdout)
+        if e.stderr:
+            print("Error:\n", e.stderr)
+
+    print(f"Successfully ran {image_name} with GPU support and volume mapping.")
+
+
+import os
+import subprocess
+
+def run_docker_with_gpu(image_name: str) -> None:
+    """
+    Run a Docker container with GPU support, mounting the 'dockerfiles/volume' directory as a volume.
+    After running the container, it will remove the container.
+
+    :param image_name: The name of the Docker image to run.
+    """
+    print(f"Running image: {image_name} with GPU support")
+
+    # Define the new path to the volume (dockerfiles/volume)
+    volume_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'dockerfiles', 'volume'))
+
+    # Run the container interactively to display its output and capture the container ID
+    # result = subprocess.run(
+    #     ['docker', 'run', '--gpus', 'all',
+    #      '--volume', f"{volume_path}:/app:rw",
+    #      '--interactive', '--detach', image_name],
+    #     capture_output=True, text=True
+    # )
+
+    subprocess.run([
+        'docker', 'run', '--gpus', 'all',
+        '--volume', f"{volume_path}:/app:rw",
+        '--interactive', image_name
+    ])
+
+    remove_all_docker_containers()
 
 
 
-# def check_image_exists(image_name):
-#     """Check if the Docker image exists."""
-#     client = docker.from_env()
-#     try:
-#         client.images.get(image_name)
-#         return True  # Image already exists
-#     except docker.errors.ImageNotFound:
-#         return False  # Image doesn't exist
-#
-# def get_dockerfile_timestamp(dockerfile_path):
-#     """Get the last modified time of the Dockerfile."""
-#     return os.path.getmtime(dockerfile_path)
-#
-# def convert_to_local_timezone(timestamp, timezone="Europe/Amsterdam"):
-#     """Convert the timestamp to the local timezone."""
-#     # If timestamp is in float form (e.g., Unix timestamp), convert it to a datetime object
-#     if isinstance(timestamp, float):
-#         utc_time = datetime.fromtimestamp(timestamp, tz=pytz.utc)
-#     else:
-#         # If timestamp is in string form (ISO 8601 format), ensure it's truncated properly
-#         if timestamp.endswith('Z'):
-#             timestamp = timestamp[:-1]
-#
-#         # Truncate the timestamp to match the microsecond precision (if nanoseconds are present)
-#         timestamp = timestamp[:26]  # Only consider up to microseconds
-#         utc_time = datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S.%f")
-#
-#     # Set the timezone to UTC
-#     utc_time = utc_time.replace(tzinfo=pytz.utc)
-#
-#     # Convert to local timezone
-#     local_time = utc_time.astimezone(pytz.timezone(timezone))
-#
-#     return local_time
-#
-# def needs_rebuild(image_name, dockerfile_path, timezone="Europe/Amsterdam"):
-#     """Check if the Docker image needs to be rebuilt."""
-#     if check_image_exists(image_name):
-#         client = docker.from_env()
-#         # Get image creation time
-#         image = client.images.get(image_name)
-#         image_creation_time = image.attrs['Created']
-#
-#         # Convert image creation time to local timezone
-#         image_creation_time_local = convert_to_local_timezone(image_creation_time, timezone)
-#
-#         # Get Dockerfile modification time and convert to local timezone
-#         dockerfile_timestamp = get_dockerfile_timestamp(dockerfile_path)
-#         dockerfile_timestamp_local = convert_to_local_timezone(dockerfile_timestamp, timezone)
-#
-#         # Print both timestamps in human-readable format
-#         print(f"Image creation timestamp (local): {image_creation_time_local.strftime('%Y-%m-%d %H:%M:%S')}")
-#         print(f"Dockerfile modification timestamp (local): {dockerfile_timestamp_local.strftime('%Y-%m-%d %H:%M:%S')}")
-#
-#         # Compare timestamps and return result
-#         rebuild = dockerfile_timestamp_local > image_creation_time_local
-#         print(f"Rebuild needed: {rebuild}")
-#         return rebuild
-#
-#     # If the image doesn't exist, it needs to be built
-#     print(f"Image '{image_name}' does not exist. Rebuild needed.")
-#     return True
-#
-# def rebuild_docker_image(image_name, dockerfile_full_path, timezone="Europe/Amsterdam"):
-#     """Check if a rebuild is necessary and rebuild the Docker image if needed."""
-#     # Extract directory and filename from the full Dockerfile path
-#     dockerfile_dir, dockerfile_name = os.path.split(dockerfile_full_path)
-#
-#     # Check if rebuild is necessary
-#     if needs_rebuild(image_name, dockerfile_full_path, timezone):
-#         print(f"Rebuilding Docker image: {image_name}...")
-#
-#         client = docker.from_env()
-#
-#         if check_image_exists(image_name):
-#             print(f"Deleting old image: {image_name}...")
-#             try:
-#                 client.images.remove(image_name, force=True)
-#                 print(f"Old image '{image_name}' deleted successfully.")
-#             except docker.errors.ImageNotFound:
-#                 print(f"Image '{image_name}' not found for deletion.")
-#             except docker.errors.APIError as e:
-#                 print(f"Error deleting image: {e}")
-#
-#         # Now rebuild the image
-#         try:
-#             # Use the low-level Docker API for building the image with a custom Dockerfile
-#             build_logs = client.api.build(
-#                 path=dockerfile_dir,
-#                 tag=image_name,
-#                 dockerfile=dockerfile_name,
-#                 rm=True,  # Remove intermediate containers after build
-#                 decode=True  # Decode the logs as JSON
-#             )
-#
-#             # Buffer for accumulating partial log lines
-#             log_buffer = ""
-#
-#             # Stream the build logs in real-time
-#             for log in build_logs:
-#                 if 'stream' in log:
-#                     log_str = log['stream']
-#                     log_buffer += log_str
-#
-#                     # Check if we have a complete line
-#                     if '\n' in log_buffer:
-#                         # Split the buffer into lines and print each line
-#                         lines = log_buffer.split('\n')
-#                         for line in lines[:-1]:  # Ignore the last part if it's incomplete
-#                             print(line.strip())
-#                         log_buffer = lines[-1]  # Keep the incomplete part for the next iteration
-#
-#         except docker.errors.BuildError as e:
-#             print(f"Build failed: {e}", file=sys.stderr)
-#         except Exception as e:
-#             print(f"An error occurred: {e}", file=sys.stderr)
-#
-#     else:
-#         print(f"Image '{image_name}' is up to date. Skipping build.")
+
+import subprocess
+
+def remove_all_docker_containers():
+    """
+    List all Docker containers (including stopped ones) and remove each of them.
+    """
+    print('Removing all docker containers')
+    try:
+        # Get the container IDs for all containers (including stopped ones)
+        result = subprocess.run(
+            ['docker', 'ps', '-a', '-q'],
+            capture_output=True, text=True
+        )
+
+        if result.returncode == 0:
+            # Get container IDs from the output
+            container_ids = result.stdout.strip().splitlines()
+
+            if container_ids:
+                print(f"Found {len(container_ids)} containers. Removing them...")
+
+                # Loop through each container ID and remove it
+                for container_id in container_ids:
+                    subprocess.run(['docker', 'rm', '-f', container_id])
+                    print(f"Removed container {container_id}")
+            else:
+                print("No containers found to remove.")
+        else:
+            print(f"Error listing Docker containers: {result.stderr}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
