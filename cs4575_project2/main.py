@@ -7,10 +7,10 @@ import os
 save_directory = 'results'
 
 images = ['mlc', 'ollama', 'vllm']
-llm__path = f"./dockerfiles/volume/{save_directory}"
+llm_path = f"./dockerfiles/volume/{save_directory}"
 
-utils.ensure_directories_exist(save_directory, images)
-utils.sync_common_files(llm__path, save_directory, images=images)
+utils.ensure_directories_exist(save_directory, llm_path, images)
+utils.sync_common_files(llm_path, save_directory, images=images)
 
 
 num_iterations = 10  # Total number of iterations

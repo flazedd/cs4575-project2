@@ -220,18 +220,16 @@ def count_files_in_folder(folder):
     return sum(len(files) for _, _, files in os.walk(folder))
 
 
-
-def ensure_directories_exist(save_directory, images):
+def ensure_directories_exist(save_directory, llm_path, images):
     """
     Ensure that the directories for each image under save_directory and llm_path exist.
     If they do not exist, the function will create them.
 
     :param save_directory: The base directory for saving images.
+    :param llm_path: The base path for the LLM-related images.
     :param images: A list of image names for which directories need to be created.
     """
-    # Construct the llm_path using the save_directory
-    llm_path = f"./dockerfiles/volume/{save_directory}"
-
+    print_color('Ensuring directories exist...')
     for image in images:
         # Define full paths for both directories
         save_image_path = os.path.join(save_directory, image)
@@ -252,7 +250,8 @@ def ensure_directories_exist(save_directory, images):
             print(f"Directory already exists: {llm_image_path}")
 
 
+
 # Example usage:
-save_directory = 'results'
-images = ['mlc', 'ollama', 'vllm']
-ensure_directories_exist(save_directory, images)
+# save_directory = 'results'
+# images = ['mlc', 'ollama', 'vllm']
+# ensure_directories_exist(save_directory, images)
