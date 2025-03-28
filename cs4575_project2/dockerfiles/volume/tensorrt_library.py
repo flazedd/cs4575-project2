@@ -9,7 +9,7 @@ import pandas as pd
 MODEL = "./TinyLlama-1.1B-Chat-v1.0"
 # MODEL = "./Qwen2.5-1.5B-Instruct-AWQ"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
-RESULTS_DIR = "results/tensorrt"
+RESULTS_DIR = f"{RESULT_FOLDER}/tensorrt"
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
     """

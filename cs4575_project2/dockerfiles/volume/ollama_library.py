@@ -3,10 +3,12 @@ import requests
 import ollama
 from utils import get_next_file_path  # Importing the generalized function
 from run_inference import run_inference_on_dataset
+from constants import *
 
 # Configuration
 MODEL_NAME = "qwen2.5:0.5b"
-RESULTS_DIR = "results/ollama"
+# RESULTS_DIR = "results/ollama"
+RESULTS_DIR = f"{RESULT_FOLDER}/ollama"
 FILE_PREFIX = "ollama"
 
 

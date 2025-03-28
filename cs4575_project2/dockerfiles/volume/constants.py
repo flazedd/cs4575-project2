@@ -1,1 +1,2 @@
 TASKS = 10
+RESULT_FOLDER = 'result'
