@@ -1,15 +1,28 @@
-from tensorrt_llm import LLM, SamplingParams
+from tensorrt_llm import LLM, SamplingParams, build, Mapping
+from tensorrt_llm.llmapi import QuantConfig, QuantAlgo, BuildConfig
+from tensorrt_llm.models import QWenForCausalLM
 import time
 from prompt import Prompt
 from utils import get_next_file_path
 from constants import *
 import pandas as pd
+import subprocess
 
 # Configuration constants
-MODEL = "./TinyLlama-1.1B-Chat-v1.0"
-# MODEL = "./Qwen2.5-1.5B-Instruct-AWQ"
+# MODEL = "./TinyLlama-1.1B-Chat-v1.0"
+MODEL = "Qwen2.5-Coder-7B-Instruct-AWQ"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
 RESULTS_DIR = "results/tensorrt"
+
+def run_command(command, step_name):
+    try:
+        result = subprocess.run(command, check=True, text=True, capture_output=True)
+        print(f"{step_name} successful:")
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"{step_name} failed:")
+        print(e.stderr)
+        raise
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
     """
@@ -32,10 +45,20 @@ def main():
 
     Returns: List of metrics
     """
-    sampling_params = SamplingParams(temperature=0, top_p=0.95)
-
     # Initialize model
-    llm = LLM(model=MODEL)
+    sampling_params = SamplingParams(temperature=0, top_p=0.95, max_tokens=2048)
+    
+    # # Convert the checkpoint
+    convert_command = [
+        "python", "convert_checkpoint.py",
+        "--model_dir", "Qwen2.5-Coder-7B-Instruct-AWQ",
+        "--output_dir", "Qwen2.5-Coder-7B-Instruct-AWQ"
+    ]
+    run_command(convert_command, "Checkpoint conversion")
+    
+    # Build & run model 
+    build_config = BuildConfig(max_seq_len=16384, max_batch_size=1)
+    llm = LLM(model=MODEL, build_config=build_config) 
     print("Model loaded successfully\n")
 
     print("Starting Experiments ...")
@@ -53,7 +76,7 @@ def main():
         start_time = time.time()
 
         # INPUT CAPPED 2048 TOKENS ???
-        outputs = llm.generate([prompt_str[:2048]], sampling_params)
+        outputs = llm.generate([prompt_str], sampling_params)
         duration = time.time() - start_time
 
         generated_text = outputs[0].outputs[0].text
