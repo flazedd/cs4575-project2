@@ -220,6 +220,17 @@ def count_files_in_folder(folder):
     return sum(len(files) for _, _, files in os.walk(folder))
 
 
+def get_next_csv_number(image_dir):
+    """Finds the highest iteration number for CSV files in a given directory and returns the next one."""
+    existing_files = [f for f in os.listdir(image_dir) if f.endswith('.csv')]
+    if not existing_files:
+        return 0  # If no CSVs exist, start from 0
+
+    # Get the maximum index number from the filenames
+    max_index = max(int(f.split('_')[1].split('.')[0]) for f in existing_files)
+    return max_index + 1
+
+
 def ensure_directories_exist(save_directory, llm_path, images):
     """
     Ensure that the directories for each image under save_directory and llm_path exist.

@@ -12,7 +12,7 @@ import subprocess
 # MODEL = "./TinyLlama-1.1B-Chat-v1.0"
 MODEL = "Qwen2.5-Coder-7B-Instruct-AWQ"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
-RESULTS_DIR = "results/tensorrt"
+RESULTS_DIR = f"{RESULT_FOLDER}/tensorrt"
 
 def run_command(command, step_name):
     try:

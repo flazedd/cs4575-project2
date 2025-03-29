@@ -11,7 +11,7 @@ from constants import *
 # Configuration constants
 MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
-RESULTS_DIR = "results/mlc"
+RESULTS_DIR = f"{RESULT_FOLDER}/mlc"
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
     """

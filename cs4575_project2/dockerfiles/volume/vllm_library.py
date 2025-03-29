@@ -7,7 +7,7 @@ from constants import *
 # Configuration constants
 MODEL = "Qwen2.5-1.5B-Instruct-AWQ"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
-RESULTS_DIR = "results/vllm"
+RESULTS_DIR = f"{RESULT_FOLDER}/vllm"
 FILE_PREFIX = "vllm"
 
 
