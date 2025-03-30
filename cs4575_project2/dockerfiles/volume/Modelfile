@@ -1,0 +1,9 @@
+FROM Qwen2.5-Coder-3B-Instruct-Q4_K_L.gguf
+
+PARAMETER num_ctx 32768
+PARAMETER temperature 0.0
+PARAMETER num_predict 4096
+PARAMETER repeat_penalty 1.05
+PARAMETER top_k 20
+PARAMETER top_p 0.8
+PARAMETER seed 0

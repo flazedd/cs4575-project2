@@ -123,4 +123,4 @@ if __name__ == '__main__':
     results = main()
     output_file = get_next_file_path(RESULTS_DIR, 'tensorrt')
     save_metrics_to_csv(results, output_file)
-    exit(1)
+    exit(0)

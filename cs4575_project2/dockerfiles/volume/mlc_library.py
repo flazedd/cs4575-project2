@@ -130,7 +130,7 @@ def main():
 
     print("Experiment with MLC is done, closing engine now")
     engine.terminate()
-    exit(1)
+    exit(0)
 
 
 if __name__ == "__main__":

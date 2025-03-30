@@ -4,12 +4,23 @@ import ollama
 from utils import get_next_file_path  # Importing the generalized function
 from run_inference import run_inference_on_dataset
 from constants import *
+import os
+import subprocess
 
 # Configuration
-MODEL_NAME = "qwen2.5-coder:3b-instruct-q4_K_M"
+MODEL_NAME = "Qwen2.5-Coder-3B-Instruct-Q4_K_L"
 # RESULTS_DIR = "results/ollama"
 RESULTS_DIR = f"{RESULT_FOLDER}/ollama"
 FILE_PREFIX = "ollama"
+parameters = {
+    "num_ctx": MAX_CONTEXT_WINDOW,
+    "temperature": TEMPERATURE,
+    "num_predict": MAX_OUTPUT_TOKENS,
+    "repeat_penalty": REPETITION_PENALTY,
+    "top_k": TOP_K,
+    "top_p": TOP_P,
+    "seed": SEED
+}
 
 
 def wait_for_ollama(max_attempts=10):
@@ -31,32 +42,31 @@ def wait_for_ollama(max_attempts=10):
     print("Failed to connect to Ollama service after multiple attempts")
     return False
 
-
 def load_model():
-    print(f"Loading model {MODEL_NAME} with Ollama...")
+    print(f"Creating model {MODEL_NAME} using subprocess...")
     try:
-        ollama.pull(MODEL_NAME)
-        print(f"Model {MODEL_NAME} loaded successfully")
+        # Construct the absolute path for the GGUF file
+        gguf_path = os.path.abspath(f"{MODEL_NAME}.gguf")
+        if not os.path.exists(gguf_path):
+            raise FileNotFoundError(f"GGUF file not found at {gguf_path}")
+
+        # The Modelfile in the current directory will be used.
+        cmd = ["ollama", "create", MODEL_NAME]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            print("Error creating model:", result.stderr)
+            return False
+        print("Model created successfully:", result.stdout)
         return True
     except Exception as e:
-        print(f"Error loading model: {e}")
+        print("Error creating model using subprocess:", e)
         return False
-
 
 def ollama_inference(prompt):
     result = ollama.generate(model=MODEL_NAME,
                              prompt=prompt,
-                             options={
-                                 "num_ctx": MAX_CONTEXT_WINDOW,
-                                 "temperature": TEMPERATURE,
-                                 "num_predict": MAX_OUTPUT_TOKENS,
-                                 "repeat_penalty": REPETITION_PENALTY,
-                                 "top_k": TOP_K,
-                                 "top_p": TOP_P,
-                                 "seed": SEED
-                             })
+                             options=parameters)
     return result
-
 
 def main():
     dataset_path = "datasets/SWE-bench_Lite_oracle.csv"
@@ -81,7 +91,7 @@ def main():
         print(f"Results saved to {output_csv}")
     except Exception as e:
         print(f"Error: {e}")
-    exit(1)
+    exit(0)
 
 
 if __name__ == "__main__":
