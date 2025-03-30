@@ -7,11 +7,29 @@ from mlc_llm.serve.config import EngineConfig
 from prompt import Prompt
 from utils import get_next_file_path
 from constants import *
+import subprocess
 
 # Configuration constants
 MODEL = "Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC"
+MODEL_ENGINE = f"{MODEL}-cuda.so"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
 RESULTS_DIR = f"{RESULT_FOLDER}/mlc"
+
+def compile_model():
+    cmd = [
+        "mlc_llm",
+        "compile",
+        MODEL,
+        "--device", "cuda",
+        "-o", f"{MODEL}/{MODEL_ENGINE}"
+    ]
+    try:
+        result = subprocess.run(cmd, check=True)
+        print("Compilation succeeded!")
+        print("Output:", result.stdout)
+    except subprocess.CalledProcessError as e:
+        print("Compilation failed!")
+        print("Error:", e.stderr)
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
     """
@@ -82,13 +100,19 @@ def save_metrics_to_csv(metrics: list, output_file: str) -> None:
 
 
 def main():
+    # Compile .so (engine for MLC) if not yet existing
+    if not os.path.exists(f"{MODEL}/{MODEL_ENGINE}"):
+        print("LOWER prefill_chunk_size (default 8192) inside mlc-chat-config.json or it will not fit on GPU memory")
+        compile_model()
+        
     # Create engine instance
     engine = MLCEngine(
         model=MODEL,
+        model_lib=f"{MODEL}/{MODEL_ENGINE}",
         device="cuda",
+        mode="interactive",
         engine_config=EngineConfig(
             max_single_sequence_length=MAX_CONTEXT_WINDOW,
-            prefill_chunk_size=1024,
         )
     )
 

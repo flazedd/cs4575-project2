@@ -1,5 +1,5 @@
 TASKS = 23 # Amount of tasks to run (23 in total for swe-bench_lite_oracle)
-RESULT_FOLDER = 'results_Alex' # Results folder, change to ur specific custom one
+RESULT_FOLDER = 'results_Alex_2' # Results folder, change to ur specific custom one
 
 # Parameters for LLM
 MAX_OUTPUT_TOKENS = 4096 # The max amount of output tokens generated
