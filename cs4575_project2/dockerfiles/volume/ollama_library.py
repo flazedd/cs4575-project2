@@ -51,7 +51,6 @@ def ollama_inference(prompt):
                                  "temperature": TEMPERATURE,
                                  "num_predict": MAX_OUTPUT_TOKENS,
                                  "repeat_penalty": REPETITION_PENALTY,
-                                 "repeat_last_n	": -1,
                                  "top_k": TOP_K,
                                  "top_p": TOP_P,
                                  "seed": SEED
