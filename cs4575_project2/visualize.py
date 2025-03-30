@@ -111,9 +111,30 @@ def plot_box_violin(statistics, title, y_label, filename, save_dir):
     plt.show()
 
 
+import numpy as np
+
 def remove_outliers(statistics):
+    """
+    Removes outliers from a dictionary of statistical data.
+
+    Parameters:
+        statistics (dict): Dict mapping labels to lists of data.
+
+    Returns: None
+    """
 
     def remove_outlier(statistic):
+        """
+        Removes outliers from a list of data.
+
+        Outliers are removed if they deviate from the mean by more than 2.9 std.
+
+        Parameters:
+            statistic (list): A list of numerical data.
+
+        Returns:
+            list: A new list with outliers removed.
+        """
         data_ = np.array(statistic)
         mean = np.mean(data_)
         std_dev = np.std(data_)
@@ -125,6 +146,7 @@ def remove_outliers(statistics):
 
     for key in statistics.keys():
         statistics[key] = remove_outlier(statistics[key])
+
 
 
 # Example usage:
