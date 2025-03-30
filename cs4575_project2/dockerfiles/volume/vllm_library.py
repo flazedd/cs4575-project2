@@ -4,8 +4,9 @@ from vllm import LLM
 from prompt import Prompt  # Reuse the same Prompt class
 from utils import get_next_file_path  # Import the generalized function
 from constants import *
+
 # Configuration constants
-MODEL = "Qwen2.5-1.5B-Instruct-AWQ"
+MODEL = "Qwen2.5-Coder-3B-Instruct-AWQ"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
 RESULTS_DIR = f"{RESULT_FOLDER}/vllm"
 FILE_PREFIX = "vllm"
@@ -73,13 +74,17 @@ def main():
         model=MODEL,
         device="cuda",
         quantization="awq",
-        max_model_len=16384,  # Equivalent to MLC's max_single_sequence_length
+        max_model_len=MAX_CONTEXT_WINDOW,  # Equivalent to MLC's max_single_sequence_length
     )
 
     # Configure sampling parameters
     sampling_params = llm.get_default_sampling_params()
-    sampling_params.temperature = 0.0
-    sampling_params.max_tokens = 2048
+    sampling_params.temperature = TEMPERATURE
+    sampling_params.max_tokens = MAX_OUTPUT_TOKENS
+    sampling_params.seed = SEED
+    sampling_params.repetition_penalty = REPETITION_PENALTY
+    sampling_params.top_k = TOP_K
+    sampling_params.top_p = TOP_P
 
     # Load dataset
     df = load_dataset(DATA_PATH)
@@ -91,6 +96,8 @@ def main():
     save_metrics_to_csv(token_metrics, output_csv)
 
     print("Experiment with vLLM is done!")
+    del llm
+    exit(0)
 
 
 if __name__ == "__main__":

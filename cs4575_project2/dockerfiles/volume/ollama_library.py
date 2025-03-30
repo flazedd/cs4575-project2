@@ -6,7 +6,7 @@ from run_inference import run_inference_on_dataset
 from constants import *
 
 # Configuration
-MODEL_NAME = "qwen2.5:0.5b"
+MODEL_NAME = "qwen2.5-coder:3b-instruct-q4_K_M"
 # RESULTS_DIR = "results/ollama"
 RESULTS_DIR = f"{RESULT_FOLDER}/ollama"
 FILE_PREFIX = "ollama"
@@ -47,8 +47,14 @@ def ollama_inference(prompt):
     result = ollama.generate(model=MODEL_NAME,
                              prompt=prompt,
                              options={
-                                 "temperature": 0,
-                                 "max_tokens": 2048
+                                 "num_ctx": MAX_CONTEXT_WINDOW,
+                                 "temperature": TEMPERATURE,
+                                 "num_predict": MAX_OUTPUT_TOKENS,
+                                 "repeat_penalty": REPETITION_PENALTY,
+                                 "repeat_last_n	": -1,
+                                 "top_k": TOP_K,
+                                 "top_p": TOP_P,
+                                 "seed": SEED
                              })
     return result
 
@@ -76,6 +82,7 @@ def main():
         print(f"Results saved to {output_csv}")
     except Exception as e:
         print(f"Error: {e}")
+    exit(1)
 
 
 if __name__ == "__main__":

@@ -27,7 +27,6 @@ RUN apt-get -y install libopenmpi-dev
 
 # Install tensorrt-llm
 RUN pip install tensorrt-llm --extra-index-url https://pypi.nvidia.com
-RUN pip install autoawq
 
 # Copy the inference library script into the container
 # COPY tensorrt_library.py ./

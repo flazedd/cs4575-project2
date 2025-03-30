@@ -6,7 +6,7 @@ import os
 from cs4575_project2.dockerfiles.volume.constants import RESULT_FOLDER
 save_directory = RESULT_FOLDER
 
-images = ['mlc', 'ollama', 'vllm']
+images = ['mlc', 'ollama', 'vllm', 'tensorrt']
 llm_path = f"./dockerfiles/volume/{save_directory}"
 
 utils.ensure_directories_exist(save_directory, llm_path, images)

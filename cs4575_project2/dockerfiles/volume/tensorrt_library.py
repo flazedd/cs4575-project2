@@ -1,5 +1,6 @@
 from tensorrt_llm import LLM, SamplingParams, build, Mapping
 from tensorrt_llm.llmapi import QuantConfig, QuantAlgo, BuildConfig
+from tensorrt_llm.plugin import PluginConfig
 from tensorrt_llm.models import QWenForCausalLM
 import time
 from prompt import Prompt
@@ -7,10 +8,13 @@ from utils import get_next_file_path
 from constants import *
 import pandas as pd
 import subprocess
+import os
+import shutil
 
 # Configuration constants
 # MODEL = "./TinyLlama-1.1B-Chat-v1.0"
-MODEL = "Qwen2.5-Coder-7B-Instruct-AWQ"
+MODEL = "Qwen2.5-Coder-3B-Instruct-AWQ"
+MODEL_TRT = f"{MODEL}-TensorRT"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
 RESULTS_DIR = f"{RESULT_FOLDER}/tensorrt"
 
@@ -46,19 +50,33 @@ def main():
     Returns: List of metrics
     """
     # Initialize model
-    sampling_params = SamplingParams(temperature=0, top_p=0.95, max_tokens=2048)
+    sampling_params = SamplingParams(temperature=TEMPERATURE, max_tokens=MAX_OUTPUT_TOKENS, repetition_penalty=REPETITION_PENALTY, top_p=TOP_P, top_k=TOP_K, seed=SEED)
     
-    # # Convert the checkpoint
-    convert_command = [
-        "python", "convert_checkpoint.py",
-        "--model_dir", "Qwen2.5-Coder-7B-Instruct-AWQ",
-        "--output_dir", "Qwen2.5-Coder-7B-Instruct-AWQ"
-    ]
-    run_command(convert_command, "Checkpoint conversion")
+    if not os.path.exists(MODEL_TRT):
+        # Convert the checkpoint
+        convert_command = [
+            "python", "convert_checkpoint.py",
+            "--model_dir", MODEL,
+            "--output_dir", MODEL_TRT
+        ]
+        run_command(convert_command, "Checkpoint conversion")
     
-    # Build & run model 
-    build_config = BuildConfig(max_seq_len=16384, max_batch_size=1)
-    llm = LLM(model=MODEL, build_config=build_config) 
+        # List of files to copy for engine
+        files_to_copy = ["tokenizer_config.json", "tokenizer.json", "vocab.json", "generation_config.json"]
+        for file in files_to_copy:
+            src_path = os.path.join(MODEL, file)
+            dst_path = os.path.join(MODEL_TRT, file)
+            if os.path.exists(src_path):
+                shutil.copy(src_path, dst_path)
+                print(f"Copied {src_path} to {dst_path}")
+            else:
+                print(f"File {src_path} does not exist.")
+        
+    # Build model engine
+    build_config = BuildConfig(max_input_len=MAX_CONTEXT_WINDOW, max_seq_len=MAX_CONTEXT_WINDOW, max_num_tokens=MAX_CONTEXT_WINDOW, max_batch_size=1)
+    llm = LLM(model=MODEL_TRT, build_config=build_config)
+    if not os.path.exists(os.path.join(MODEL_TRT, "rank0.engine")):
+        llm.save(MODEL_TRT) # save engine to folder
     print("Model loaded successfully\n")
 
     print("Starting Experiments ...")
@@ -74,8 +92,6 @@ def main():
 
         # Send prompt to the engine
         start_time = time.time()
-
-        # INPUT CAPPED 2048 TOKENS ???
         outputs = llm.generate([prompt_str], sampling_params)
         duration = time.time() - start_time
 
@@ -107,3 +123,4 @@ if __name__ == '__main__':
     results = main()
     output_file = get_next_file_path(RESULTS_DIR, 'tensorrt')
     save_metrics_to_csv(results, output_file)
+    exit(1)

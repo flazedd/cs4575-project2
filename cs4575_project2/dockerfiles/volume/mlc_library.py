@@ -9,7 +9,7 @@ from utils import get_next_file_path
 from constants import *
 
 # Configuration constants
-MODEL = "Qwen2.5-1.5B-Instruct-q4f16_1-MLC"
+MODEL = "Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
 RESULTS_DIR = f"{RESULT_FOLDER}/mlc"
 
@@ -41,8 +41,9 @@ def run_experiment(engine: MLCEngine, df: pd.DataFrame, model: str) -> list:
             messages=[{"role": "user", "content": prompt_str}],
             model=model,
             stream=False,
-            max_tokens=2048,
-            temperature=0.0,
+            max_tokens=MAX_OUTPUT_TOKENS,
+            temperature=TEMPERATURE,
+            seed = SEED
         )
         response_content = response.choices[0].message.content
         print("Response:")
@@ -86,8 +87,8 @@ def main():
         model=MODEL,
         device="cuda",
         engine_config=EngineConfig(
-            max_single_sequence_length=16384,  # Decrease context window by 50%
-            prefill_chunk_size=1024,           # Decrease chunk size by 50%
+            max_single_sequence_length=MAX_CONTEXT_WINDOW,
+            prefill_chunk_size=1024,
         )
     )
 
@@ -105,6 +106,7 @@ def main():
 
     print("Experiment with MLC is done, closing engine now")
     engine.terminate()
+    exit(1)
 
 
 if __name__ == "__main__":
