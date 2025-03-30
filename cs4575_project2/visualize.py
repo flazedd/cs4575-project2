@@ -111,6 +111,44 @@ def plot_box_violin(statistics, title, y_label, filename, save_dir):
     plt.show()
 
 
+import numpy as np
+
+def remove_outliers(statistics):
+    """
+    Removes outliers from a dictionary of statistical data.
+
+    Parameters:
+        statistics (dict): Dict mapping labels to lists of data.
+
+    Returns: None
+    """
+
+    def remove_outlier(statistic):
+        """
+        Removes outliers from a list of data.
+
+        Outliers are removed if they deviate from the mean by more than 2.9 std.
+
+        Parameters:
+            statistic (list): A list of numerical data.
+
+        Returns:
+            list: A new list with outliers removed.
+        """
+        data_ = np.array(statistic)
+        mean = np.mean(data_)
+        std_dev = np.std(data_)
+        diff = np.abs(data_ - mean)
+        # Remove all data points that deviate from the mean more than 2.9 standard deviations
+        mask = diff <= (2.9 * std_dev)
+        # Return the data without the outliers
+        return data_[mask].tolist()
+
+    for key in statistics.keys():
+        statistics[key] = remove_outlier(statistics[key])
+
+
+
 # Example usage:
 # csv_path = 'dockerfiles/volume/results/vllm/vllm_0.csv'  # Replace with your actual CSV file path
 # columns = ['tokens_per_sec', 'seconds']  # Replace with your desired columns
@@ -154,6 +192,8 @@ for image in images:
         total_token_s = calculate_weighted_tokens_per_sec(tokens_per_sec, seconds)
         tokens_per_sec_stats[image].append(total_token_s)
 
+remove_outliers(energy_per_token_stats)
+remove_outliers(tokens_per_sec_stats)
 
 plot_box_violin(statistics=energy_per_token_stats,
                 title="Energy per token",
