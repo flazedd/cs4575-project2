@@ -9,7 +9,7 @@ from collections import defaultdict
 
 save_directory = RESULT_FOLDER
 
-images = ['mlc', 'ollama', 'vllm']
+images = ['mlc', 'ollama', 'vllm', "tensorrt"]
 llm_path = f"./dockerfiles/volume/{save_directory}"
 
 utils.sync_common_files(llm_path, save_directory, images=images)

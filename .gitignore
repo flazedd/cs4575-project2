@@ -6,3 +6,4 @@
 .python-version
 .pyproject.toml
 .poetry.lock
+cs4575_project2/dockerfiles/volume/Qwen2.5-Coder-3B-Instruct-Q4_K_L.gguf
