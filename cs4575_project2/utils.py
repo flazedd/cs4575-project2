@@ -142,7 +142,7 @@ def remove_all_docker_containers():
     try:
         # Get the container IDs for all containers (including stopped ones)
         result = subprocess.run(
-            ['docker', 'ps', '-a', '-q'],
+            ['docker', 'ps', '-q'],
             capture_output=True, text=True
         )
 
