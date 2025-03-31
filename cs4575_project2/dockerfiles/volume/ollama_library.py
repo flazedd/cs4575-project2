@@ -8,7 +8,7 @@ import os
 import subprocess
 
 # Configuration
-MODEL_NAME = "Qwen2.5-Coder-3B-Instruct-Q4_K_L"
+MODEL_NAME = "Qwen2.5-Coder-14B-Instruct-Q4_K_L"
 # RESULTS_DIR = "results/ollama"
 RESULTS_DIR = f"{RESULT_FOLDER}/ollama"
 FILE_PREFIX = "ollama"
