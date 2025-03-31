@@ -126,12 +126,12 @@ def run_docker_with_gpu(image_name: str) -> None:
     # )
 
     subprocess.run([
-        'docker', 'run', '--gpus', 'all',
+        'docker', 'run', '--rm', '--gpus', 'all',  # <-- Added --rm flag
         '--volume', f"{volume_path}:/app:rw",
         '--interactive', image_name
     ])
 
-    remove_all_docker_containers()
+    # remove_all_docker_containers()
 
 
 def remove_all_docker_containers():
