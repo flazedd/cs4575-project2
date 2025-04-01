@@ -1,0 +1,1 @@
+docker run --gpus all -v $(pwd)/volume:/app:rw -it bash
