@@ -1,10 +1,9 @@
 import subprocess
 import time
 import os
-import keyboard
 import re
 from utils import print_color
-
+from dockerfiles.volume.constants import ENERGIBRIDGE_PATH
 class EnergiCustom:
     def __init__(self, output="results.csv", measure_gpu=False):
         self.joules = None
@@ -26,15 +25,23 @@ class EnergiCustom:
         script_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Construct the path to the energibridge executable
-        energibridge_path = os.path.join(script_dir, 'energibridge_things', 'energibridge')
+        energibridge_path = ENERGIBRIDGE_PATH
 
         # Define the command as a list
         command = [
             energibridge_path,
             '-o', self.output,
             '--summary',
-            'timeout', '99999'  # Maximum for Windows, ~1 day
+            'sleep', '99999'  # Maximum for Linux, ~1 day
         ]
+
+        # # Define the command as a list (FOR WINDOWS)
+        # command = [
+        #     energibridge_path,
+        #     '-o', self.output,
+        #     '--summary',
+        #     'timeout', '99999'  # Maximum for Windows, ~1 day
+        # ]
 
         # Check if measure_gpu is True, and if so, add '--gpu' to the command
         if self.measure_gpu:
@@ -51,7 +58,6 @@ class EnergiCustom:
     def stop(self):
         print_color(f'Saving output in {self.output}')
         # Simulate pressing a key to trigger early output
-        keyboard.press_and_release('enter')  # Replace with the key energibridge expects
         time.sleep(5)
         self.cleanup()
 
