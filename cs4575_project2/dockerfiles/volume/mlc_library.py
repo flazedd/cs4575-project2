@@ -10,7 +10,7 @@ from constants import *
 import subprocess
 
 # Configuration constants
-MODEL = "Qwen2.5-Coder-3B-Instruct-q4f16_1-MLC"
+MODEL = "Qwen2.5-Coder-14B-Instruct-q4f16_1-MLC"
 MODEL_ENGINE = f"{MODEL}-cuda.so"
 DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
 RESULTS_DIR = f"{RESULT_FOLDER}/mlc"
