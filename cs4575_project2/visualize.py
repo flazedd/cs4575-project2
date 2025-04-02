@@ -195,6 +195,28 @@ for image in images:
 remove_outliers(energy_per_token_stats)
 remove_outliers(tokens_per_sec_stats)
 
+# Calculate and print statistics for each library
+print("Statistics for each library:")
+for library in images:
+    if library in energy_per_token_stats and library in tokens_per_sec_stats:
+        # Energy per token statistics
+        energy_data = energy_per_token_stats[library]
+        energy_mean = np.mean(energy_data)
+        energy_std = np.std(energy_data)
+
+        # Tokens per second statistics
+        tokens_data = tokens_per_sec_stats[library]
+        tokens_mean = np.mean(tokens_data)
+        tokens_std = np.std(tokens_data)
+
+        # Print the results
+        print(f"\nLibrary: {library}")
+        print(f"  Mean Energy per Token: {energy_mean:.4f} J")
+        print(f"  Std Dev Energy per Token: {energy_std:.4f} J")
+        print(f"  Mean Tokens per Second: {tokens_mean:.4f} tokens/s")
+        print(f"  Std Dev Tokens per Second: {tokens_std:.4f} tokens/s")
+
+
 plot_box_violin(statistics=energy_per_token_stats,
                 title="Energy per token",
                 y_label="Energy (J)",
