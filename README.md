@@ -85,7 +85,7 @@ SERVICE_NAME: rapl
         FLAGS              :
 ```
 
-For Linux installation instructions head to ```cs4575_project2\energibridge_things\README.md```, the current project is setup for a Linux device and does NOT support Windows natively. 
+For Linux installation instructions head to ```cs4575_project2\energibridge_things\README.md```, the current project is setup for a Linux device. 
 
 ### Step 6: Building the docker containers & experiment setup
 To run the experiments for inference library energy comparison, you have to follow multiple steps to make it work. Un the ```cs4575_project2\dockerfiles``` folder, you will be able to find the documentation on how to do all this in the [```README.MD```](https://github.com/flazedd/cs4575-project2/blob/master/cs4575_project2/dockerfiles/README.md) file.
