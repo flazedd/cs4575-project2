@@ -49,9 +49,9 @@ def extract_columns_as_series(csv_file_path, columns):
 def calculate_energy(delta, power):
     """
     Calculate the energy in Joules consumed.
-    Energy (J) = Power (mW) * Time (s) / 1000
+    Energy (J) = Power (W) * Time (s)
     """
-    return (delta * power) / 1000  # Convert mW to W
+    return (delta * power)
 
 def calculate_total_tokens(tokens_per_sec, seconds):
     """
@@ -182,6 +182,8 @@ for image in images:
             continue
 
         delta, power = extract_columns_as_series(save_file_path, ["Delta", "GPU0_POWER (mWatts)"])
+        delta = delta * 0.001
+        power = power * 0.001
         energy = calculate_energy(delta, power).sum()
         tokens_per_sec, seconds = extract_columns_as_series(llm_file_path, ["tokens_per_sec", "seconds"])
         total_tokens = calculate_total_tokens(tokens_per_sec, seconds)
@@ -211,10 +213,10 @@ for library in images:
 
         # Print the results
         print(f"\nLibrary: {library}")
-        print(f"  Mean Energy per Token: {energy_mean:.4f} J")
-        print(f"  Std Dev Energy per Token: {energy_std:.4f} J")
-        print(f"  Mean Tokens per Second: {tokens_mean:.4f} tokens/s")
-        print(f"  Std Dev Tokens per Second: {tokens_std:.4f} tokens/s")
+        print(f"  Mean Energy per Token: {energy_mean:.2f} J")
+        print(f"  Std Dev Energy per Token: {energy_std:.2f} J")
+        print(f"  Mean Tokens per Second: {tokens_mean:.2f} tokens/s")
+        print(f"  Std Dev Tokens per Second: {tokens_std:.2f} tokens/s")
 
 plot_box_violin(statistics=energy_per_token_stats,
                 title="Energy per token",
