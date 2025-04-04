@@ -12,6 +12,7 @@ MODEL_NAME = "Qwen2.5-Coder-14B-Instruct-Q4_K_L"
 # RESULTS_DIR = "results/ollama"
 RESULTS_DIR = f"{RESULT_FOLDER}/ollama"
 FILE_PREFIX = "ollama"
+DATA_PATH = DATASET_PATH
 parameters = {
     "num_ctx": MAX_CONTEXT_WINDOW,
     "temperature": TEMPERATURE,
@@ -69,7 +70,6 @@ def ollama_inference(prompt):
     return result
 
 def main():
-    dataset_path = "datasets/SWE-bench_Lite_oracle.csv"
 
     # Determine the next available file path
     output_csv = get_next_file_path(RESULTS_DIR, FILE_PREFIX)
@@ -84,7 +84,7 @@ def main():
 
     try:
         run_inference_on_dataset(
-            dataset_path=dataset_path,
+            dataset_path=DATA_PATH,
             inference_method=ollama_inference,
             output_csv=output_csv
         )

@@ -15,7 +15,7 @@ import shutil
 # MODEL = "./TinyLlama-1.1B-Chat-v1.0"
 MODEL = "Qwen2.5-Coder-14B-Instruct-AWQ"
 MODEL_TRT = f"{MODEL}-TensorRT"
-DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
+DATA_PATH = DATASET_PATH
 RESULTS_DIR = f"{RESULT_FOLDER}/tensorrt"
 
 def run_command(command, step_name):

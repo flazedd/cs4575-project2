@@ -1,1 +1,0 @@
-docker run -v %~dp0volume:/app/log:rw volume_test

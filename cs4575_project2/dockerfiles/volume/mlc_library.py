@@ -12,7 +12,7 @@ import subprocess
 # Configuration constants
 MODEL = "Qwen2.5-Coder-14B-Instruct-q4f16_1-MLC"
 MODEL_ENGINE = f"{MODEL}-cuda.so"
-DATA_PATH = "datasets/SWE-bench_Lite_oracle.csv"
+DATA_PATH = DATASET_PATH
 RESULTS_DIR = f"{RESULT_FOLDER}/mlc"
 
 def compile_model():
