@@ -1,4 +1,4 @@
-# CS4575 Project 2 - Instructions
+# CS4575 Project 2: Energy Efficiency in LLM Inference: Comparing Inference Libraries in a Unified Docker Framework - Instructions
 
 ### Step 1: Install Python 3.11.8
 
@@ -88,7 +88,7 @@ SERVICE_NAME: rapl
 For Linux installation instructions head to ```cs4575_project2\energibridge_things\README.md```, the current project is setup for a Linux device and does NOT support Windows natively. 
 
 ### Step 6: Building the docker containers & experiment setup
-To run the experiments for inference library energy comparison, you have to follow multiple steps in order to make it work. Un the ```cs4575_project2\dockerfiles``` folder you will be able to find the documentation how to do all this in the ```README.MD``` file.
+To run the experiments for inference library energy comparison, you have to follow multiple steps to make it work. Un the ```cs4575_project2\dockerfiles``` folder, you will be able to find the documentation on how to do all this in the [```README.MD```](https://github.com/flazedd/cs4575-project2/blob/master/cs4575_project2/dockerfiles/README.md) file.
 
 ### Step 7: Run the project
 Make sure to launch your IDE/terminal in Administrator mode! 
