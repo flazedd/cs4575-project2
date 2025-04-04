@@ -51,6 +51,10 @@ poetry show
 
 
 ### Step 5: Install service for EnergiBridge
+
+**IMPORTANT**: To make energibridge work for Windows you have to change the ```cs4575_project2\energi_custom.py``` file and change the ```sleep``` command to ```timeout``` on line 35.
+
+
 Open CMD in Administrator mode on Windows
 
 REPLACE with your own path!
@@ -81,8 +85,12 @@ SERVICE_NAME: rapl
         FLAGS              :
 ```
 
+For Linux installation instructions head to ```cs4575_project2\energibridge_things\README.md```, the current project is setup for a Linux device and does NOT support Windows natively. 
 
-### Step 6: Run the project
+### Step 6: Building the docker containers & experiment setup
+To run the experiments for inference library energy comparison, you have to follow multiple steps in order to make it work. Un the ```cs4575_project2\dockerfiles``` folder you will be able to find the documentation how to do all this in the ```README.MD``` file.
+
+### Step 7: Run the project
 Make sure to launch your IDE/terminal in Administrator mode! 
 
 ```bash
