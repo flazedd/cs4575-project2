@@ -2,8 +2,8 @@
 
 This directory contains the Dockerfiles and related scripts for building and running the Docker containers used in the project.
 
-## Docker Images
-The following Docker images are included in this directory:
+## Dockerfiles for Images 
+The following Dockerfiles for images are included in this directory:
 - **vLLM**
 - **TensorRT**
 - **MLC**
