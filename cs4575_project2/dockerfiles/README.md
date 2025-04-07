@@ -33,8 +33,8 @@ For **MLC** and **TensorRT**, note that during the first iteration the engines w
 
 TensorRT does not support converting to checkpoint models natively, the `convert_checkpoint.py` file has to be placed inside the `volume` directory when running the experiment, the current `convert_checkpoint.py` file is **only for models based on the Qwen 2 architecture**. For more information and different model architectures see the [TensorRT documentation](https://github.com/NVIDIA/TensorRT-LLM/tree/main/examples/qwen#int4-awq).
 
-## Hardware and Memory Considerations
-- If your GPU or hardware has memory constraints, you may need to adjust the `prefill_chunk_size` variable.
+## Hardware and Memory Considerations in MLC models
+- If your GPU or hardware has memory constraints, you may need to adjust the `prefill_chunk_size` variable in the `mlc-chat-config.json` config file, which you can find in the MLC LLM folder when downloaded.
 - The default value is set to `8192`; consider lowering it to `1024` if necessary.
 
 ## Configuration Files
